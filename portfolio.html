@@ -214,6 +214,7 @@
   }
   #bottomBar button:hover, #bottomBar a:hover{background:var(--red);color:var(--white);}
   #bottomBar a:last-child, #bottomBar button:last-child{border-right:none;}
+  #bottomBar #soundBtn{flex:0 0 64px;font-size:1.05rem;}
   #bottomBar .wa-btn{flex:0 0 64px;color:var(--red);}
   #bottomBar .wa-btn svg{width:20px;height:20px;fill:var(--red);transition:fill .2s;}
   #bottomBar .wa-btn:hover svg{fill:var(--white);}
@@ -291,6 +292,7 @@
 
 <div id="bottomBar">
   <div id="progress"></div>
+  <button id="soundBtn" aria-label="Toggle sound">🔇</button>
   <button id="backBtn">« Back</button>
   <button id="nextBtn">Next »</button>
   <a href="http://wa.me/919981947010" target="_blank" class="wa-btn" aria-label="Chat with us on WhatsApp">
@@ -302,6 +304,8 @@
   <button class="lb-close">✕ CLOSE</button>
   <img id="lb-img" src="" alt="">
 </div>
+
+<audio id="bgAudio" src="assets/BEYOND.mp3" loop preload="none"></audio>
 
 <script>
   const sections = Array.from(document.querySelectorAll('.panel'));
@@ -344,6 +348,25 @@
   });
   document.querySelector('.lb-close').addEventListener('click', ()=>lightbox.classList.remove('open'));
   lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) lightbox.classList.remove('open'); });
+
+  // Sound toggle — plays/pauses assets/BEYOND.mp3
+  const soundBtn = document.getElementById('soundBtn');
+  const bgAudio = document.getElementById('bgAudio');
+  bgAudio.volume = 0.6;
+
+  soundBtn.addEventListener('click', ()=>{
+    if(bgAudio.paused){
+      bgAudio.play().then(()=>{
+        soundBtn.textContent = '🔊';
+      }).catch((err)=>{
+        console.error('Could not play background audio:', err);
+        soundBtn.textContent = '🔇';
+      });
+    } else {
+      bgAudio.pause();
+      soundBtn.textContent = '🔇';
+    }
+  });
 </script>
 
 </body>
