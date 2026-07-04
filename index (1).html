@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beyond Branding · Brand Strategy & Design Studio</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FAF9F7;
+    --ink:#131113;
+    --red:#D91C2B;
+    --red-deep:#A8121E;
+    --muted-on-white:#6B6864;
+    --muted-on-red:rgba(250,249,247,0.72);
+    --line-on-white: rgba(19,17,19,0.14);
+    --line-on-red: rgba(250,249,247,0.24);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    background:var(--white);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    overflow:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--red);color:var(--white);}
+
+  /* ---------- LOADER ---------- */
+  #loader{
+    position:fixed;inset:0;z-index:1000;
+    background:var(--white);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:18px;
+    transition:opacity .7s ease, visibility .7s ease;
+  }
+  #loader.hide{opacity:0;visibility:hidden;pointer-events:none;}
+  #loader .mark{
+    font-family:'Archivo',sans-serif;font-weight:800;font-size:1.1rem;letter-spacing:0.08em;color:var(--ink);
+  }
+  #loader .mark em{font-style:normal;color:var(--red);}
+  #loader .pct{font-family:'Archivo',sans-serif;font-size:2.4rem;font-weight:900;color:var(--ink);}
+  #loader .hint{font-size:0.72rem;letter-spacing:0.12em;color:var(--muted-on-white);text-transform:uppercase;}
+  #loader .bar{width:180px;height:3px;background:var(--line-on-white);position:relative;overflow:hidden;}
+  #loader .bar span{position:absolute;left:0;top:0;bottom:0;width:0%;background:var(--red);}
+
+  /* ---------- SCROLL CONTAINER ---------- */
+  #scroller{
+    height:100svh;
+    overflow-y:scroll;
+    scroll-snap-type:y mandatory;
+    scroll-behavior:smooth;
+  }
+  #scroller::-webkit-scrollbar{display:none;}
+
+  section.panel{
+    height:100svh;
+    scroll-snap-align:start;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding:0 clamp(24px,6vw,72px) 130px;
+    overflow:hidden;
+  }
+  .panel.light{background:var(--white);color:var(--ink);}
+  .panel.dark{background:var(--red);color:var(--white);}
+
+  .bg{position:absolute;inset:0;z-index:0;pointer-events:none;}
+  .panel.light .bg{
+    background:
+      radial-gradient(ellipse 70% 55% at 85% 10%, rgba(217,28,43,0.08), transparent 65%);
+  }
+  .panel.dark .bg{
+    background:
+      radial-gradient(ellipse 70% 55% at 15% 8%, rgba(250,249,247,0.12), transparent 65%);
+  }
+
+  .panel-content{position:relative;z-index:2;max-width:920px;}
+  .tag{
+    display:flex;align-items:center;gap:9px;
+    font-family:'Archivo',sans-serif;font-weight:700;
+    font-size:0.78rem;letter-spacing:0.16em;text-transform:uppercase;
+    margin-bottom:22px;
+  }
+  .panel.light .tag{color:var(--red);}
+  .panel.dark .tag{color:var(--white);}
+  .tag::before{content:"";width:8px;height:8px;flex-shrink:0;}
+  .panel.light .tag::before{background:var(--red);}
+  .panel.dark .tag::before{background:var(--white);}
+
+  h1,h2{
+    font-family:'Archivo',sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:-0.01em;
+    line-height:1.0;
+    font-size:clamp(2rem, 6.4vw, 4.4rem);
+    margin-bottom:28px;
+  }
+  .panel-content p{
+    font-size:clamp(0.98rem,1.6vw,1.12rem);
+    line-height:1.65;
+    max-width:640px;
+    margin-bottom:34px;
+  }
+
+  .panel.light .panel-content p{color:rgba(19,17,19,0.68);}
+  .panel.dark .panel-content p{color:var(--muted-on-red);}
+
+  .cta{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 26px;
+    font-family:'Archivo',sans-serif;font-weight:700;
+    font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;
+    text-decoration:none;
+    transition:transform .25s, background .25s, color .25s;
+    border:2px solid transparent;
+  }
+  .panel.light .cta{background:var(--ink);color:var(--white);}
+  .panel.light .cta:hover{background:var(--red);}
+  .panel.dark .cta{background:var(--white);color:var(--red-deep);}
+  .panel.dark .cta:hover{background:var(--ink);color:var(--white);}
+  .cta:hover{transform:translateY(-2px);}
+  .cta .ico{font-size:0.95em;}
+
+  .locations{
+    display:flex;gap:18px;margin-top:38px;
+    font-family:'Archivo',sans-serif;font-weight:700;
+    font-size:0.75rem;letter-spacing:0.1em;
+    flex-wrap:wrap;
+  }
+  .panel.light .locations{color:var(--muted-on-white);}
+  .panel.dark .locations{color:var(--muted-on-red);}
+
+  .clients{
+    display:flex;flex-wrap:wrap;gap:10px 30px;margin-top:6px;
+    font-family:'Archivo',sans-serif;font-weight:700;
+    font-size:0.85rem;letter-spacing:0.02em;
+  }
+  .panel.light .clients{color:var(--ink);}
+  .panel.dark .clients{color:var(--white);}
+  .proof-panel{background:#F7F7F7;}
+  .proof-panel .bg{background:none;}
+  .proof-panel .panel-content{max-width:1000px;}
+  .clients-img{
+    max-width:100%;
+    width:100%;
+    height:auto;
+    margin-bottom:30px;
+    display:block;
+  }
+
+  /* ---------- TOP BAR ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:300;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:24px clamp(20px,5vw,60px);
+    pointer-events:none;
+  }
+  header .logo{
+    font-family:'Archivo',sans-serif;font-weight:800;font-size:1rem;letter-spacing:0.04em;
+    pointer-events:auto;color:var(--ink);
+    transition:color .35s;
+  }
+  header .logo em{color:var(--red);font-style:normal;transition:color .35s;}
+  body[data-theme="dark"] header .logo{color:var(--white);}
+  body[data-theme="dark"] header .logo em{color:var(--white);}
+  #menuBtn{
+    pointer-events:auto;
+    display:flex;align-items:center;gap:9px;
+    background:var(--white);color:var(--ink);
+    border:none;padding:13px 22px;
+    font-family:'Archivo',sans-serif;font-weight:700;
+    font-size:0.78rem;letter-spacing:0.1em;
+    cursor:pointer;
+    clip-path:polygon(0 0,88% 0,100% 30%,100% 100%,0 100%);
+  }
+  #menuBtn .grid{font-size:1rem;line-height:1;}
+
+  /* ---------- SIDE SECTION INDICATOR ---------- */
+  #sideNav{
+    position:fixed;right:clamp(16px,4vw,44px);top:50%;transform:translateY(-50%);
+    z-index:250;
+    display:flex;flex-direction:column;gap:16px;
+  }
+  #sideNav button{
+    background:none;border:none;color:var(--ink);
+    font-family:'Archivo',sans-serif;font-weight:700;
+    font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
+    display:flex;align-items:center;gap:8px;justify-content:flex-end;
+    cursor:pointer;padding:2px 0;opacity:0.5;
+    transition:opacity .3s, color .35s;
+  }
+  #sideNav button::after{content:"";width:6px;height:6px;background:var(--ink);flex-shrink:0;transition:background .35s;}
+  #sideNav button.active{opacity:1;}
+  body[data-theme="dark"] #sideNav button{color:var(--white);}
+  body[data-theme="dark"] #sideNav button::after{background:var(--white);}
+  @media(max-width:760px){#sideNav{display:none;}}
+
+  /* ---------- BOTTOM BAR ---------- */
+  #bottomBar{
+    position:fixed;bottom:0;left:0;right:0;z-index:280;
+    display:flex;align-items:stretch;
+    background:var(--white);
+    border-top:2px solid var(--ink);
+  }
+  #bottomBar button, #bottomBar a{
+    flex:1;
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    background:none;border:none;border-right:1px solid var(--line-on-white);
+    color:var(--ink);text-decoration:none;
+    font-family:'Archivo',sans-serif;font-weight:700;
+    font-size:0.74rem;letter-spacing:0.08em;text-transform:uppercase;
+    padding:18px 10px;cursor:pointer;
+    transition:background .2s,color .2s;
+  }
+  #bottomBar button:hover, #bottomBar a:hover{background:var(--red);color:var(--white);}
+  #bottomBar a:last-child, #bottomBar button:last-child{border-right:none;}
+  #bottomBar #soundBtn{flex:0 0 64px;font-size:1.05rem;}
+  #bottomBar .wa-btn{flex:0 0 64px;color:var(--red);}
+  #bottomBar .wa-btn svg{width:20px;height:20px;fill:var(--red);transition:fill .2s;}
+  #bottomBar .wa-btn:hover svg{fill:var(--white);}
+  #bottomBar #backBtn, #bottomBar #nextBtn{flex:1;}
+  #progress{
+    position:absolute;top:-2px;left:0;height:2px;background:var(--red);
+    width:16.66%;transition:width .4s ease;
+  }
+
+  /* ---------- MENU OVERLAY ---------- */
+  #menuOverlay{
+    position:fixed;inset:0;z-index:500;
+    background:var(--red);
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 clamp(24px,7vw,90px);
+    transform:translateY(-100%);
+    transition:transform .55s cubic-bezier(.76,0,.24,1);
+  }
+  #menuOverlay.open{transform:translateY(0);}
+  #menuOverlay .close{
+    position:absolute;top:24px;right:clamp(20px,5vw,60px);
+    background:none;border:none;color:var(--white);
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:0.78rem;letter-spacing:0.1em;
+    cursor:pointer;display:flex;align-items:center;gap:8px;
+  }
+  #menuOverlay .tag{margin-bottom:30px;color:var(--white);}
+  #menuOverlay .tag::before{background:var(--white);}
+  #menuOverlay nav a{
+    display:block;
+    font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;
+    font-size:clamp(2rem,7vw,4.2rem);
+    color:var(--white);text-decoration:none;
+    padding:10px 0;
+    border-bottom:1px solid var(--line-on-red);
+    transition:color .25s, padding-left .25s;
+  }
+  #menuOverlay nav a:hover{color:var(--ink);padding-left:14px;}
+  #menuOverlay .socials{
+    display:flex;gap:26px;margin-top:44px;
+    font-family:'Archivo',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:0.06em;
+  }
+  #menuOverlay .socials a{color:var(--white);text-decoration:none;opacity:0.8;}
+  #menuOverlay .socials a:hover{opacity:1;color:var(--ink);}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="mark">BEYOND<em>BRANDING</em></div>
+  <div class="pct" id="pctText">0%</div>
+  <div class="bar"><span id="pctBar"></span></div>
+  <div class="hint">Loading Studio</div>
+</div>
+
+<header>
+  <div class="logo">BEYOND<em>BRANDING</em></div>
+  <button id="menuBtn"><span class="grid">⊞</span>MENU</button>
+</header>
+
+<div id="sideNav">
+  <button data-i="0" class="active">Attention</button>
+  <button data-i="1">Trust</button>
+  <button data-i="2">Precision</button>
+  <button data-i="3">Proof</button>
+  <button data-i="4">Speed</button>
+  <button data-i="5">Start</button>
+</div>
+
+<div id="menuOverlay">
+  <button class="close">✕ CLOSE</button>
+  <div class="tag">Menu</div>
+  <nav>
+    <a href="#" data-i="0">Home</a>
+    <a href="portfolio.html">Work</a>
+    <a href="#" data-i="2">Method</a>
+    <a href="#" data-i="1">About</a>
+    <a href="#" data-i="5">Contact</a>
+  </nav>
+  <div class="socials">
+    <a href="http://wa.me/919981947010" target="_blank">WHATSAPP</a>
+    <a href="mailto:ayush@beyondbranding.media">EMAIL</a>
+  </div>
+</div>
+
+<div id="scroller">
+
+  <section class="panel light" id="p0">
+    <div class="bg"></div>
+    <div class="panel-content">
+      <div class="tag">Attention</div>
+      <h1>We design for the first two seconds that decide everything</h1>
+      <p>Beyond Branding builds identity, visuals, ad creative and video around how people actually decide. Fast, precise, and led by one team from first sketch to final file.</p>
+      <a href="portfolio.html" class="cta"><span class="ico">⊟</span>Explore Our Work</a>
+      <div class="locations">LONDON&nbsp;&nbsp;·&nbsp;&nbsp;DUBAI&nbsp;&nbsp;·&nbsp;&nbsp;MUMBAI</div>
+    </div>
+  </section>
+
+  <section class="panel dark" id="p1">
+    <div class="bg"></div>
+    <div class="panel-content">
+      <div class="tag">Trust</div>
+      <h2>No account layers. No handoffs. Just the people building your brand</h2>
+      <p>Bigger studios sell a pitch team and deliver a production line. We run the opposite way: one senior team, on every project, start to finish. It's deliberate, not a limitation.</p>
+    </div>
+  </section>
+
+  <section class="panel light" id="p2">
+    <div class="bg"></div>
+    <div class="panel-content">
+      <div class="tag">Precision</div>
+      <h2>Design that starts with a decision, not a mood board</h2>
+      <p>Every choice, a color, a typeface, a three-second cut, is either building trust or costing it. Attention, memory, trust signals, consistency: we design toward outcomes, not aesthetics for their own sake.</p>
+    </div>
+  </section>
+
+  <section class="panel light proof-panel" id="p3">
+    <div class="bg"></div>
+    <div class="panel-content">
+      <div class="tag">Proof</div>
+      <img src="assets/clients-logos.webp" alt="Trusted by Government of Dubai Media Office, Radisson, WazirX and Marriott" class="clients-img">
+      <h2>Trusted by brands that couldn't afford to get it wrong</h2>
+      <p>Real work, under real pressure. Not portfolio briefs.</p>
+      <a href="portfolio.html" class="cta" style="margin-top:8px;"><span class="ico">⊟</span>See The Work</a>
+    </div>
+  </section>
+
+  <section class="panel dark" id="p4">
+    <div class="bg"></div>
+    <div class="panel-content">
+      <div class="tag">Speed</div>
+      <h2>Fast isn't a shortcut here. It's what a lean team delivers</h2>
+      <p>Direction in days, not weeks. No internal sign-off chains. If something needs to change, it changes the same day, because the people deciding are the people designing.</p>
+    </div>
+  </section>
+
+  <section class="panel dark" id="p5">
+    <div class="bg"></div>
+    <div class="panel-content">
+      <div class="tag">Start</div>
+      <h2>Bring us the brief. We'll bring the direction</h2>
+      <p>No forms that disappear into an inbox. Message directly and hear back from the people actually doing the work.</p>
+      <a href="http://wa.me/919981947010" target="_blank" class="cta"><span class="ico">⊟</span>Work With Us</a>
+    </div>
+  </section>
+
+</div>
+
+<div id="bottomBar">
+  <div id="progress"></div>
+  <button id="soundBtn" aria-label="Toggle sound">🔇</button>
+  <button id="backBtn">« Back</button>
+  <button id="nextBtn">Next »</button>
+  <a href="http://wa.me/919981947010" target="_blank" class="wa-btn" aria-label="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.9-4.45 9.9-9.9C21.96 6.45 17.5 2 12.04 2zm0 18.13h-.01c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.02 8.02 0 0 1-1.24-4.36c0-4.46 3.63-8.09 8.1-8.09 2.16 0 4.19.85 5.72 2.38a8.04 8.04 0 0 1 2.37 5.72c0 4.46-3.63 8.1-8.09 8.1zm4.44-6.07c-.24-.12-1.44-.71-1.66-.79-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.95-.14.16-.29.18-.53.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.43-1.35-1.67-.14-.24-.02-.37.11-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.32-.75-1.81-.2-.48-.4-.41-.55-.42-.14-.01-.3-.01-.46-.01-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.44-.59 1.64-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.46-.28z"/></svg>
+  </a>
+</div>
+
+<audio id="bgAudio" src="assets/Beyond.mp3" loop preload="none"></audio>
+
+<script>
+  // Loader
+  const loader = document.getElementById('loader');
+  const pctText = document.getElementById('pctText');
+  const pctBar = document.getElementById('pctBar');
+  let pct = 0;
+  const loadInt = setInterval(()=>{
+    pct += Math.random()*18+6;
+    if(pct>=100){
+      pct=100;
+      clearInterval(loadInt);
+      setTimeout(()=>loader.classList.add('hide'), 350);
+    }
+    pctText.textContent = Math.floor(pct)+'%';
+    pctBar.style.width = pct+'%';
+  }, 180);
+
+  // Sections
+  const sections = Array.from(document.querySelectorAll('.panel'));
+  const scroller = document.getElementById('scroller');
+  const sideBtns = Array.from(document.querySelectorAll('#sideNav button'));
+  const progress = document.getElementById('progress');
+  let current = 0;
+
+  function setActive(i){
+    current = i;
+    sideBtns.forEach(b=>b.classList.remove('active'));
+    sideBtns[i].classList.add('active');
+    progress.style.width = ((i+1)/sections.length*100)+'%';
+    const isDark = sections[i].classList.contains('dark');
+    document.body.dataset.theme = isDark ? 'dark' : 'light';
+  }
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const idx = sections.indexOf(e.target);
+        if(idx>-1) setActive(idx);
+      }
+    });
+  },{threshold:0.6});
+  sections.forEach(s=>io.observe(s));
+
+  sideBtns.forEach(b=>{
+    b.addEventListener('click', ()=>{
+      sections[+b.dataset.i].scrollIntoView({behavior:'smooth'});
+    });
+  });
+
+  document.getElementById('nextBtn').addEventListener('click', ()=>{
+    const next = Math.min(current+1, sections.length-1);
+    sections[next].scrollIntoView({behavior:'smooth'});
+  });
+  document.getElementById('backBtn').addEventListener('click', ()=>{
+    const prev = Math.max(current-1, 0);
+    sections[prev].scrollIntoView({behavior:'smooth'});
+  });
+
+  // Sound toggle — plays/pauses assets/Beyond.mp3
+  const soundBtn = document.getElementById('soundBtn');
+  const bgAudio = document.getElementById('bgAudio');
+  let soundOn = false;
+  soundBtn.addEventListener('click', ()=>{
+    soundOn = !soundOn;
+    if(soundOn){
+      bgAudio.play().catch(()=>{ soundOn = false; soundBtn.textContent = '🔇'; });
+    } else {
+      bgAudio.pause();
+    }
+    soundBtn.textContent = soundOn ? '🔊' : '🔇';
+  });
+
+  // Menu overlay
+  const menuBtn = document.getElementById('menuBtn');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const closeBtn = document.querySelector('#menuOverlay .close');
+  menuBtn.addEventListener('click', ()=>menuOverlay.classList.add('open'));
+  closeBtn.addEventListener('click', ()=>menuOverlay.classList.remove('open'));
+  document.querySelectorAll('#menuOverlay nav a').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      if(a.dataset.i === undefined) return; // real link (e.g. portfolio.html) — let it navigate
+      e.preventDefault();
+      menuOverlay.classList.remove('open');
+      setTimeout(()=>{
+        sections[+a.dataset.i].scrollIntoView({behavior:'smooth'});
+      }, 400);
+    });
+  });
+</script>
+
+</body>
+</html>
