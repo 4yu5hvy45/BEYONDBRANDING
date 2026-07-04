@@ -379,7 +379,7 @@
   </a>
 </div>
 
-<audio id="bgAudio" src="assets/Beyond.mp3" loop preload="none"></audio>
+<audio id="bgAudio" src="assets/BEYOND.mp3" loop preload="none"></audio>
 
 <script>
   // Loader
@@ -439,18 +439,23 @@
     sections[prev].scrollIntoView({behavior:'smooth'});
   });
 
-  // Sound toggle — plays/pauses assets/Beyond.mp3
+  // Sound toggle — plays/pauses assets/BEYOND.mp3
   const soundBtn = document.getElementById('soundBtn');
   const bgAudio = document.getElementById('bgAudio');
-  let soundOn = false;
+  bgAudio.volume = 0.6;
+
   soundBtn.addEventListener('click', ()=>{
-    soundOn = !soundOn;
-    if(soundOn){
-      bgAudio.play().catch(()=>{ soundOn = false; soundBtn.textContent = '🔇'; });
+    if(bgAudio.paused){
+      bgAudio.play().then(()=>{
+        soundBtn.textContent = '🔊';
+      }).catch((err)=>{
+        console.error('Could not play background audio:', err);
+        soundBtn.textContent = '🔇';
+      });
     } else {
       bgAudio.pause();
+      soundBtn.textContent = '🔇';
     }
-    soundBtn.textContent = soundOn ? '🔊' : '🔇';
   });
 
   // Menu overlay
