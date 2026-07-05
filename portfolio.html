@@ -110,7 +110,7 @@
     color:var(--muted);
   }
 
-  /* ---------- GALLERY PANELS ---------- */
+  /* ---------- GALLERY PANELS (shared) ---------- */
   .gallery-panel{
     justify-content:center;
     align-items:center;
@@ -140,9 +140,26 @@
   .gallery-card:hover{transform:translateY(-6px);box-shadow:0 16px 32px rgba(19,17,19,0.14);}
   .gallery-card img{height:100%;width:100%;display:block;object-fit:contain;}
 
+  /* Desktop shows grouped rows of 3; mobile shows the single-image slides instead */
+  .mobile-gallery{display:none;}
+
   @media (max-width:820px){
-    .gallery-row{flex-direction:column;height:auto;gap:14px;}
-    .gallery-card{max-width:100%;width:100%;height:26vh;flex:0 0 auto;}
+    .desktop-gallery{display:none;}
+    .mobile-gallery{display:block;}
+
+    .mobile-slide .gallery-card{
+      width:min(88vw,420px);
+      height:min(74vh,640px);
+      max-width:none;
+      margin:0 auto;
+    }
+    .mobile-slide .slide-count{
+      position:absolute;
+      top:24px;right:clamp(20px,5vw,50px);
+      font-family:'Archivo',sans-serif;font-weight:700;
+      font-size:0.72rem;letter-spacing:0.08em;
+      color:var(--muted);
+    }
   }
 
   /* ---------- CLOSING CTA PANEL ---------- */
@@ -240,44 +257,107 @@
     <div class="intro-count">14 projects · scroll or hit next</div>
   </section>
 
-  <section class="panel gallery-panel" id="g1">
-    <div class="gallery-row">
+  <!-- DESKTOP: 3 images per screen -->
+  <div class="desktop-gallery">
+    <section class="panel gallery-panel">
+      <div class="gallery-row">
+        <div class="gallery-card"><img src="assets/work-dubai-media.webp" alt="Design collaterals for Government of Dubai Media Office" loading="lazy"></div>
+        <div class="gallery-card"><img src="assets/work-marriott-campaign.webp" alt="Promotional campaign for Marriott Indore" loading="lazy"></div>
+        <div class="gallery-card"><img src="assets/work-aiolec-brochure.webp" alt="Brochure design for Aiolec London" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="panel gallery-panel">
+      <div class="gallery-row">
+        <div class="gallery-card"><img src="assets/work-web3-branding.webp" alt="Web3 branding for OnlyDotFun" loading="lazy"></div>
+        <div class="gallery-card"><img src="assets/work-airport-ad.webp" alt="Airport ad campaign for Minerals" loading="lazy"></div>
+        <div class="gallery-card"><img src="assets/work-emailer-campaign.webp" alt="Emailer campaigns for Peculiar Pumpkin and Create" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="panel gallery-panel">
+      <div class="gallery-row">
+        <div class="gallery-card"><img src="assets/work-newspaper-ad.webp" alt="Newspaper ad for Colorado Windows Direct" loading="lazy"></div>
+        <div class="gallery-card"><img src="assets/work-google-meta-ads.webp" alt="Google and Meta ad campaigns for various brands" loading="lazy"></div>
+        <div class="gallery-card"><img src="assets/work-billboard.webp" alt="Billboard design for Transylvania Moving Company" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="panel gallery-panel">
+      <div class="gallery-row">
+        <div class="gallery-card"><img src="assets/work-printable-banners.webp" alt="Printable banners for Chinlung Restobar" loading="lazy"></div>
+        <div class="gallery-card"><img src="assets/work-restaurant-branding.webp" alt="Restaurant branding and menu system for Rice and Noodles" loading="lazy"></div>
+        <div class="gallery-card"><img src="assets/work-packaging-design.webp" alt="Packaging design for The Fresh Market" loading="lazy"></div>
+      </div>
+    </section>
+
+    <section class="panel gallery-panel">
+      <div class="gallery-row">
+        <div class="gallery-card"><img src="assets/work-indian-kawfee.webp" alt="Branding and packaging for The Indian Kawfee Company" loading="lazy"></div>
+        <div class="gallery-card"><img src="assets/work-astro-brand.webp" alt="Astro Brand campaign poster" loading="lazy"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- MOBILE: 1 portrait image per screen -->
+  <div class="mobile-gallery">
+    <section class="panel gallery-panel mobile-slide">
+      <div class="slide-count">01 / 14</div>
       <div class="gallery-card"><img src="assets/work-dubai-media.webp" alt="Design collaterals for Government of Dubai Media Office" loading="lazy"></div>
+    </section>
+    <section class="panel gallery-panel mobile-slide">
+      <div class="slide-count">02 / 14</div>
       <div class="gallery-card"><img src="assets/work-marriott-campaign.webp" alt="Promotional campaign for Marriott Indore" loading="lazy"></div>
+    </section>
+    <section class="panel gallery-panel mobile-slide">
+      <div class="slide-count">03 / 14</div>
       <div class="gallery-card"><img src="assets/work-aiolec-brochure.webp" alt="Brochure design for Aiolec London" loading="lazy"></div>
-    </div>
-  </section>
-
-  <section class="panel gallery-panel" id="g2">
-    <div class="gallery-row">
+    </section>
+    <section class="panel gallery-panel mobile-slide">
+      <div class="slide-count">04 / 14</div>
       <div class="gallery-card"><img src="assets/work-web3-branding.webp" alt="Web3 branding for OnlyDotFun" loading="lazy"></div>
+    </section>
+    <section class="panel gallery-panel mobile-slide">
+      <div class="slide-count">05 / 14</div>
       <div class="gallery-card"><img src="assets/work-airport-ad.webp" alt="Airport ad campaign for Minerals" loading="lazy"></div>
+    </section>
+    <section class="panel gallery-panel mobile-slide">
+      <div class="slide-count">06 / 14</div>
       <div class="gallery-card"><img src="assets/work-emailer-campaign.webp" alt="Emailer campaigns for Peculiar Pumpkin and Create" loading="lazy"></div>
-    </div>
-  </section>
-
-  <section class="panel gallery-panel" id="g3">
-    <div class="gallery-row">
+    </section>
+    <section class="panel gallery-panel mobile-slide">
+      <div class="slide-count">07 / 14</div>
       <div class="gallery-card"><img src="assets/work-newspaper-ad.webp" alt="Newspaper ad for Colorado Windows Direct" loading="lazy"></div>
+    </section>
+    <section class="panel gallery-panel mobile-slide">
+      <div class="slide-count">08 / 14</div>
       <div class="gallery-card"><img src="assets/work-google-meta-ads.webp" alt="Google and Meta ad campaigns for various brands" loading="lazy"></div>
+    </section>
+    <section class="panel gallery-panel mobile-slide">
+      <div class="slide-count">09 / 14</div>
       <div class="gallery-card"><img src="assets/work-billboard.webp" alt="Billboard design for Transylvania Moving Company" loading="lazy"></div>
-    </div>
-  </section>
-
-  <section class="panel gallery-panel" id="g4">
-    <div class="gallery-row">
+    </section>
+    <section class="panel gallery-panel mobile-slide">
+      <div class="slide-count">10 / 14</div>
       <div class="gallery-card"><img src="assets/work-printable-banners.webp" alt="Printable banners for Chinlung Restobar" loading="lazy"></div>
+    </section>
+    <section class="panel gallery-panel mobile-slide">
+      <div class="slide-count">11 / 14</div>
       <div class="gallery-card"><img src="assets/work-restaurant-branding.webp" alt="Restaurant branding and menu system for Rice and Noodles" loading="lazy"></div>
+    </section>
+    <section class="panel gallery-panel mobile-slide">
+      <div class="slide-count">12 / 14</div>
       <div class="gallery-card"><img src="assets/work-packaging-design.webp" alt="Packaging design for The Fresh Market" loading="lazy"></div>
-    </div>
-  </section>
-
-  <section class="panel gallery-panel" id="g5">
-    <div class="gallery-row">
+    </section>
+    <section class="panel gallery-panel mobile-slide">
+      <div class="slide-count">13 / 14</div>
       <div class="gallery-card"><img src="assets/work-indian-kawfee.webp" alt="Branding and packaging for The Indian Kawfee Company" loading="lazy"></div>
+    </section>
+    <section class="panel gallery-panel mobile-slide">
+      <div class="slide-count">14 / 14</div>
       <div class="gallery-card"><img src="assets/work-astro-brand.webp" alt="Astro Brand campaign poster" loading="lazy"></div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <section class="panel cta-panel" id="g6">
     <h2>Like what you see? Let's talk about yours.</h2>
@@ -308,24 +388,41 @@
 <audio id="bgAudio" src="assets/BEYOND.mp3" loop preload="none"></audio>
 
 <script>
-  const sections = Array.from(document.querySelectorAll('.panel'));
+  const scroller = document.getElementById('scroller');
+  const introPanel = document.getElementById('g0');
+  const ctaPanel = document.getElementById('g6');
+  const desktopGallery = document.querySelector('.desktop-gallery');
+  const mobileGallery = document.querySelector('.mobile-gallery');
   const progress = document.getElementById('progress');
+  const mq = window.matchMedia('(max-width:820px)');
+
+  let sections = [];
   let current = 0;
+  let io = null;
+
+  function buildSections(){
+    const activeGallery = mq.matches ? mobileGallery : desktopGallery;
+    sections = [introPanel, ...Array.from(activeGallery.querySelectorAll('.panel')), ctaPanel];
+
+    if(io) io.disconnect();
+    io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const idx = sections.indexOf(e.target);
+          if(idx>-1) setActive(idx);
+        }
+      });
+    },{threshold:0.6});
+    sections.forEach(s=>io.observe(s));
+  }
 
   function setActive(i){
     current = i;
     progress.style.width = ((i+1)/sections.length*100)+'%';
   }
 
-  const io = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        const idx = sections.indexOf(e.target);
-        if(idx>-1) setActive(idx);
-      }
-    });
-  },{threshold:0.6});
-  sections.forEach(s=>io.observe(s));
+  buildSections();
+  mq.addEventListener('change', buildSections);
 
   document.getElementById('nextBtn').addEventListener('click', ()=>{
     const next = Math.min(current+1, sections.length-1);
