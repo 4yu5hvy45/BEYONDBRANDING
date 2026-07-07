@@ -188,7 +188,7 @@
       flex-shrink:0;
       margin-top:70px; /* clears the fixed header so the logo stays visible above the cropped image */
     }
-    #p0 .hero-image img{object-position:center bottom;}
+    #p0 .hero-image img{object-position:center top;}
     #p0 .hero-text{
       max-width:100%;
       flex:1;
@@ -301,7 +301,7 @@
   #sideNav button.active{opacity:1;}
   body[data-theme="dark"] #sideNav button{color:var(--white);}
   body[data-theme="dark"] #sideNav button::after{background:var(--white);}
-  @media(max-width:760px){#sideNav{display:none;}}
+  @media(max-width:760px){#sideNav{display:none !important;}}
 
   /* ---------- BOTTOM BAR ---------- */
   #bottomBar{
