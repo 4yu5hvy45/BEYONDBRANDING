@@ -188,7 +188,7 @@
       flex-shrink:0;
       margin-top:70px; /* clears the fixed header so the logo stays visible above the cropped image */
     }
-    #p0 .hero-image img{object-position:center top;}
+    #p0 .hero-image img{object-position:center bottom;}
     #p0 .hero-text{
       max-width:100%;
       flex:1;
@@ -256,6 +256,87 @@
     display:block;
   }
 
+  /* ---------- TOOL SHOWCASE PANEL (p1) ---------- */
+  #p1{justify-content:center;}
+  #p1 .panel-content{
+    max-width:1240px;
+    width:100%;
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:clamp(32px,5vw,72px);
+    align-items:center;
+  }
+  #p1 .showcase-text p{margin-bottom:0;}
+
+  .showcase-visual{
+    position:relative;
+    background:rgba(250,249,247,0.06);
+    border:1px solid rgba(250,249,247,0.16);
+    border-radius:20px;
+    padding:20px;
+    backdrop-filter:blur(6px);
+  }
+  .frame-topbar{display:flex;align-items:center;gap:7px;margin-bottom:16px;}
+  .frame-topbar .dot{width:8px;height:8px;border-radius:50%;background:rgba(250,249,247,0.28);}
+  .frame-label{
+    margin-left:8px;font-family:'Archivo',sans-serif;font-weight:600;
+    font-size:0.68rem;letter-spacing:0.06em;color:rgba(250,249,247,0.5);
+  }
+  .morph-stage{position:relative;height:230px;border-radius:14px;overflow:hidden;}
+  .morph-stage .scan{
+    position:absolute;left:0;right:0;top:0;height:2px;z-index:3;opacity:0;
+    background:linear-gradient(90deg,transparent,rgba(250,249,247,0.9),transparent);
+    animation:scanMove 3.6s ease-in-out infinite;
+  }
+  @keyframes scanMove{
+    0%{top:0;opacity:0;}
+    8%{opacity:1;}
+    50%{top:100%;opacity:1;}
+    58%{opacity:0;}
+    100%{top:100%;opacity:0;}
+  }
+  .state{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;
+  }
+  .state-before{background:#DEDAD3;color:#7A756E;animation:beforeFade 7s ease-in-out infinite;}
+  .state-after{
+    background:linear-gradient(135deg,#1B1113,#2E1418);color:var(--white);
+    animation:afterFade 7s ease-in-out infinite;
+  }
+  @keyframes beforeFade{0%,42%{opacity:1;}52%,100%{opacity:0;}}
+  @keyframes afterFade{0%,42%{opacity:0;}52%,92%{opacity:1;}100%{opacity:0;}}
+  .state .mock-logo{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:0.01em;}
+  .state-before .mock-logo{font-weight:600;letter-spacing:0.06em;}
+  .state-after .mock-logo .red{color:var(--red);}
+  .state .mock-tagline{
+    font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;
+    text-transform:uppercase;opacity:0.65;
+  }
+  .score-chip{
+    position:absolute;top:-14px;right:6px;width:60px;height:60px;border-radius:50%;
+    background:var(--ink);color:var(--white);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-family:'Archivo',sans-serif;z-index:4;
+    animation:pulseRing 2.6s ease-out infinite;
+  }
+  .score-chip .score-num{font-size:1.15rem;font-weight:800;line-height:1;}
+  .score-chip .score-lab{font-size:0.5rem;letter-spacing:0.04em;opacity:0.6;}
+  @keyframes pulseRing{
+    0%{box-shadow:0 0 0 0 rgba(217,28,43,0.5);}
+    70%{box-shadow:0 0 0 16px rgba(217,28,43,0);}
+    100%{box-shadow:0 0 0 0 rgba(217,28,43,0);}
+  }
+  .showcase-cta-wrap{display:flex;justify-content:center;margin-top:-22px;position:relative;z-index:5;}
+  .showcase-cta{box-shadow:0 16px 36px rgba(0,0,0,0.38);white-space:nowrap;}
+
+  @media(max-width:900px){
+    #p1 .panel-content{grid-template-columns:1fr;gap:44px;}
+    .morph-stage{height:180px;}
+    .score-chip{width:52px;height:52px;top:-10px;right:0;}
+    .score-chip .score-num{font-size:1rem;}
+  }
+
   /* ---------- TOP BAR ---------- */
   header{
     position:fixed;top:0;left:0;right:0;z-index:300;
@@ -301,7 +382,7 @@
   #sideNav button.active{opacity:1;}
   body[data-theme="dark"] #sideNav button{color:var(--white);}
   body[data-theme="dark"] #sideNav button::after{background:var(--white);}
-  @media(max-width:760px){#sideNav{display:none !important;}}
+  @media(max-width:760px){#sideNav{display:none;}}
 
   /* ---------- BOTTOM BAR ---------- */
   #bottomBar{
@@ -398,7 +479,7 @@
 
 <div id="sideNav">
   <button data-i="0" class="active">Attention</button>
-  <button data-i="1">Trust</button>
+  <button data-i="1">Preview</button>
   <button data-i="2">Precision</button>
   <button data-i="3">Proof</button>
   <button data-i="4">Speed</button>
@@ -441,9 +522,32 @@
   <section class="panel dark" id="p1">
     <div class="bg"></div>
     <div class="panel-content">
-      <div class="tag">Trust</div>
-      <h2>No account layers. No handoffs. Just the people building your brand</h2>
-      <p>Bigger studios sell a pitch team and deliver a production line. We run the opposite way: one senior team, on every project, start to finish. It's deliberate, not a limitation.</p>
+      <div class="showcase-text">
+        <div class="tag">Preview</div>
+        <h2>Don't imagine the rebrand. See it, before you spend on it</h2>
+        <p>Upload your current logo, storefront or website and our AI generates a premium redesign concept in under 30 seconds, scored against real brand principles. No guesswork, no waiting on a pitch deck. See exactly what "better" looks like, then decide if it's worth building for real.</p>
+      </div>
+      <div class="showcase-visual">
+        <div class="frame-topbar">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="frame-label">ai-revamp.html</span>
+        </div>
+        <div class="morph-stage">
+          <div class="scan"></div>
+          <div class="state state-before">
+            <div class="mock-logo">ACME CO.</div>
+            <div class="mock-tagline">Est. 2014 · Before</div>
+          </div>
+          <div class="state state-after">
+            <div class="mock-logo">ACME<span class="red">.</span></div>
+            <div class="mock-tagline">Premium, restated · After</div>
+          </div>
+        </div>
+        <div class="score-chip"><span class="score-num">92</span><span class="score-lab">/100</span></div>
+        <div class="showcase-cta-wrap">
+          <a href="ai-revamp.html" class="cta showcase-cta"><span class="ico">⊟</span>Try The AI Revamp</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -639,7 +743,7 @@
 
   // Outbound page-wipe transition to portfolio.html
   const wipeEl = document.getElementById('wipe');
-  document.querySelectorAll('a[href="portfolio.html"]').forEach(a=>{
+  document.querySelectorAll('a[href="portfolio.html"], a[href="ai-revamp.html"]').forEach(a=>{
     a.addEventListener('click', (e)=>{
       e.preventDefault();
       const href = a.getAttribute('href');
