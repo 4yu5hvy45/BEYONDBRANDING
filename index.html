@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Beyond Branding · Brand Strategy & Design Studio</title>
 <!-- Open Graph / Link Preview Tags -->
 <meta property="og:title" content="Beyond Branding · Brand Strategy & Design Studio">
@@ -38,7 +38,7 @@
     --line-on-red: rgba(250,249,247,0.24);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html,body{height:100%;}
+  html,body{height:100%;touch-action:manipulation;} /* disables double-tap-to-zoom on mobile browsers */
   body{
     background:var(--white);
     color:var(--ink);
@@ -178,7 +178,12 @@
     .cta:active{transform:scale(0.97);box-shadow:0 4px 12px rgba(19,17,19,0.18);}
     .panel.light .cta:active{background:var(--red);}
     .proof-panel .panel-content{max-width:100%;}
-    .clients-img{margin-bottom:22px;}
+    .clients-strip{
+      margin-left:-20px;margin-right:-20px;
+      width:calc(100% + 40px);
+      margin-bottom:22px;
+    }
+    #p1 .tag{display:none;} /* sits behind/under the fixed header logo at this width — dropped to avoid overlap */
   }
 
   /* ---------- HERO (full-bleed, layered) ---------- */
@@ -202,6 +207,37 @@
     margin-bottom:24px;
   }
   #p0 h1 .red{color:var(--red);}
+  #p0 h1{position:relative;}
+  /* Periodic light-reflection sweep across the headline — a soft highlight band
+     glides across the glyphs on an interval, like light catching foil-stamped type. */
+  #p0 .hero-shine{
+    position:absolute;inset:0;
+    pointer-events:none;
+    background-image:linear-gradient(100deg,
+      transparent 30%,
+      rgba(255,255,255,0.85) 46%,
+      rgba(255,255,255,0.95) 50%,
+      rgba(255,255,255,0.85) 54%,
+      transparent 70%);
+    background-size:300% 100%;
+    background-position:160% 0;
+    background-repeat:no-repeat;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    -webkit-text-fill-color:transparent;
+    mix-blend-mode:overlay;
+    animation:heroShineSweep 6.5s ease-in-out infinite;
+    animation-delay:2.4s;
+  }
+  @keyframes heroShineSweep{
+    0%{background-position:160% 0;}
+    22%{background-position:-60% 0;}
+    100%{background-position:-60% 0;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    #p0 .hero-shine{animation:none;display:none;}
+  }
   #p0 .hero-rule{
     width:64px;height:3px;background:var(--red);
     margin-bottom:26px;
@@ -366,8 +402,8 @@
       min-height:0;
     }
     #p0 h1{
-      font-size:clamp(2.3rem, 9.6vw, 3.1rem);
-      line-height:0.98;
+      font-size:clamp(2.6rem, 11vw, 3.4rem);
+      line-height:0.97;
       margin-bottom:14px;
     }
     #p0 .hero-rule{
@@ -376,8 +412,8 @@
     }
     #p0 .hero-text p{
       display:block;
-      font-size:0.88rem;
-      line-height:1.55;
+      font-size:0.81rem;
+      line-height:1.52;
       margin-bottom:0;
     }
     #p0 .hero-text .cta{display:none;}
@@ -471,12 +507,19 @@
   .panel.dark .clients{color:var(--white);}
   .proof-panel{background:#F7F7F7;}
   .proof-panel .bg{background:none;}
-  .proof-panel .panel-content{max-width:1000px;}
+  .proof-panel .panel-content{max-width:1120px;}
+  .clients-strip{position:relative;margin-bottom:30px;text-align:left;}
+  .clients-strip::after{
+    /* blends the logo image's own right-edge gradient into the panel background so the seam disappears */
+    content:"";position:absolute;top:0;right:0;bottom:0;width:14%;
+    background:linear-gradient(to right, transparent, #F7F7F7 75%);
+    pointer-events:none;
+  }
   .clients-img{
     max-width:100%;
     width:100%;
     height:auto;
-    margin-bottom:30px;
+    margin:0;
     display:block;
   }
 
@@ -766,7 +809,7 @@
       <div class="hero-grain"></div>
     </div>
     <div class="panel-content hero-text">
-      <h1>FAST IDEAS.<br><span class="red">PREMIUM DESIGN.</span><br>ON TIME,<br>EVERY TIME.</h1>
+      <h1>FAST IDEAS.<br><span class="red">PREMIUM DESIGN.</span><br>ON TIME,<br>EVERY TIME.<span class="hero-shine" aria-hidden="true">FAST IDEAS.<br>PREMIUM DESIGN.<br>ON TIME,<br>EVERY TIME.</span></h1>
       <div class="hero-rule"></div>
       <p>Beyond Branding builds identity, visuals, ad creative and video around how people actually decide. Fast, precise, and led by one team from first sketch to final file.</p>
       <a href="portfolio.html" class="cta"><span class="ico">⊟</span>Explore Our Work</a>
@@ -820,7 +863,9 @@
     <div class="bg"></div>
     <div class="panel-content">
       <div class="tag">Proof</div>
-      <img src="assets/clients-logos.webp" alt="Trusted by Government of Dubai Media Office, Radisson, WazirX and Marriott" class="clients-img">
+      <div class="clients-strip">
+        <img src="assets/clients-logos.webp" alt="Trusted by Government of Dubai Media Office, Radisson, WazirX and Marriott" class="clients-img">
+      </div>
       <h2>Trusted by brands that couldn't afford to get it wrong</h2>
       <p>Real work, under real pressure. Not portfolio briefs.</p>
       <a href="portfolio.html" class="cta" style="margin-top:8px;"><span class="ico">⊟</span>See The Work</a>
