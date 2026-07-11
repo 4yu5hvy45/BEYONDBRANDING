@@ -147,7 +147,7 @@
   /* ---------- GENERAL MOBILE ALIGNMENT ---------- */
   @media(max-width:900px){
     section.panel{
-      padding:0 20px 112px;
+      padding:calc(96px + env(safe-area-inset-top)) 20px 112px;
       justify-content:center;
     }
     .panel-content{max-width:100%;}
@@ -232,8 +232,114 @@
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     transform:translate(var(--gx,0px), var(--gy,0px));
   }
+
+  /* =========================================================
+     PREMIUM STUDIO LIGHTING — Effect 1
+     Three large, ultra-soft radial "softbox" lights drift slowly
+     across the hero image. Each one is a feathered radial-gradient
+     blended with the fur/coat using soft-light / overlay / screen,
+     so pure-white background pixels stay visually white while the
+     cheetah's fur, coat and face catch faint, shifting highlights.
+     Only transform + opacity are animated (GPU-friendly), and the
+     image itself never moves, scales or rotates.
+     ========================================================= */
+  /* .hero-fit is sized/positioned by JS to exactly match the image's
+     rendered content box (object-fit:contain, object-position:bottom right).
+     Without this, a tall container + a landscape image means most of the
+     "light" gradients fall on empty letterboxed space above the cheetah
+     and never touch the fur at all — this wrapper guarantees they land
+     on the actual photo every time, at any viewport size. */
+  #p0 .hero-fit{
+    position:absolute;z-index:2;
+    overflow:hidden;pointer-events:none;
+  }
+  #p0 .hero-lights{
+    position:absolute;inset:0;
+    overflow:hidden;pointer-events:none;
+  }
+  #p0 .hero-lights .light{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(46px);
+    will-change:transform,opacity;
+  }
+  #p0 .hero-lights .light-1{
+    width:65%;height:65%;top:-12%;left:-8%;
+    background:radial-gradient(circle, rgba(255,248,236,0.95) 0%, rgba(255,248,236,0) 68%);
+    mix-blend-mode:soft-light;
+    animation:heroLight1 19s ease-in-out infinite;
+  }
+  #p0 .hero-lights .light-2{
+    width:58%;height:58%;bottom:-14%;right:-6%;
+    background:radial-gradient(circle, rgba(255,244,230,0.95) 0%, rgba(255,244,230,0) 70%);
+    mix-blend-mode:overlay;
+    animation:heroLight2 23s ease-in-out infinite;
+  }
+  #p0 .hero-lights .light-3{
+    width:46%;height:46%;top:28%;left:22%;
+    background:radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 72%);
+    mix-blend-mode:screen;
+    animation:heroLight3 16s ease-in-out infinite;
+  }
+  @keyframes heroLight1{
+    0%,100%{ transform:translate(-3%,-2%) scale(1);   opacity:0.12; }
+    50%    { transform:translate(7%,6%)   scale(1.1); opacity:0.22; }
+  }
+  @keyframes heroLight2{
+    0%,100%{ transform:translate(4%,3%)   scale(1);    opacity:0.10; }
+    50%    { transform:translate(-6%,-7%) scale(1.12);  opacity:0.19; }
+  }
+  @keyframes heroLight3{
+    0%,100%{ transform:translate(-5%,4%)  scale(1);    opacity:0.08; }
+    50%    { transform:translate(5%,-5%)  scale(1.08);  opacity:0.16; }
+  }
+
+  /* =========================================================
+     LUXURY SUNGLASSES REFLECTION — Effect 2
+     A thin, blurred, elongated white streak sweeps diagonally
+     across the upper-third of the hero image roughly every
+     12–15s, mimicking a studio softbox reflection travelling
+     across glossy lenses and bleeding slightly onto the fur
+     collar just below. It stays hidden for most of the cycle
+     and fades in/out rather than appearing abruptly.
+     ========================================================= */
+  #p0 .hero-sheen{
+    position:absolute;
+    left:0;right:0;
+    top:22%;height:26%;
+    z-index:3;
+    overflow:hidden;
+    pointer-events:none;
+  }
+  #p0 .hero-sheen-streak{
+    position:absolute;
+    top:-40%;bottom:-40%;
+    width:20%;
+    left:-30%;
+    background:linear-gradient(
+      100deg,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0.9) 48%,
+      rgba(255,255,255,0) 100%
+    );
+    filter:blur(5px);
+    mix-blend-mode:soft-light;
+    opacity:0;
+    animation:heroSheenSweep 13s ease-in-out infinite;
+  }
+  @keyframes heroSheenSweep{
+    0%,72%   { transform:translateX(0%);   opacity:0; }
+    80%      { opacity:0.32; }
+    88%      { transform:translateX(520%); opacity:0.28; }
+    96%,100% { transform:translateX(560%); opacity:0; }
+  }
+
   @media(max-width:900px){
-    #p0 .hero-spotlight,#p0 .hero-grain{display:none;}
+    #p0 .hero-spotlight,#p0 .hero-grain,
+    #p0 .hero-lights,#p0 .hero-sheen{display:none;}
+  }
+  @media(prefers-reduced-motion:reduce){
+    #p0 .hero-lights .light,#p0 .hero-sheen-streak{animation:none;opacity:0.04;}
   }
   @media(max-width:900px){
     #p0{
@@ -250,24 +356,39 @@
       display:flex;
       flex-direction:column;
       justify-content:center;
-      padding:calc(70px + env(safe-area-inset-top)) 20px 8px;
+      padding:calc(104px + env(safe-area-inset-top)) 20px 4px;
       min-height:0;
     }
     #p0 h1{
-      font-size:clamp(2.6rem, 11vw, 3.4rem);
-      line-height:0.96;
-      margin-bottom:16px;
+      font-size:clamp(2.3rem, 9.6vw, 3.1rem);
+      line-height:0.98;
+      margin-bottom:14px;
     }
     #p0 .hero-rule{
       width:38px;height:2px;
-      margin-bottom:16px;
+      margin-bottom:14px;
     }
     #p0 .hero-text p{
       display:block;
-      font-size:0.92rem;
-      margin-bottom:20px;
+      font-size:0.88rem;
+      line-height:1.55;
+      margin-bottom:0;
     }
+    #p0 .hero-text .cta{display:none;}
     #p0 .locations{display:none;}
+    #p0 .hero-cta-mobile{
+      display:inline-flex;
+      position:absolute;
+      left:50%;
+      bottom:calc(80px + env(safe-area-inset-bottom));
+      transform:translateX(-50%);
+      z-index:6;
+      background:var(--red);
+      color:var(--white);
+      box-shadow:0 14px 30px rgba(217,28,43,0.4);
+      white-space:nowrap;
+    }
+    #p0 .hero-cta-mobile:active{background:var(--red-deep);transform:translateX(-50%) scale(0.97);}
     #p0 .hero-image{
       order:2;
       position:static;
@@ -292,6 +413,11 @@
   #p0 .hero-image{opacity:0;transform:scale(0.97);transition:opacity 1.1s ease, transform 1.1s ease;}
   #p0.revealed .hero-text{opacity:1;transform:translateY(0);}
   #p0.revealed .hero-image{opacity:1;transform:scale(1);}
+  #p0 .hero-cta-mobile{
+    opacity:0;transform:translateX(-50%) translateY(14px);
+    transition:opacity .9s ease .2s, transform .9s ease .2s;
+  }
+  #p0.revealed .hero-cta-mobile{opacity:1;transform:translateX(-50%) translateY(0);}
 
   .cta{
     position:relative;
@@ -319,6 +445,7 @@
   .cta:active{transform:translateY(0);}
   .cta .ico{font-size:0.95em;transition:transform .3s ease;}
   .cta:hover .ico{transform:translateX(3px);}
+  .hero-cta-mobile{display:none;}
 
   .locations{
     display:flex;gap:18px;margin-top:38px;
@@ -614,7 +741,22 @@
     <div class="hero-mesh"></div>
     <div class="hero-spotlight"></div>
     <div class="hero-image">
-      <img src="assets/hero-cheetah.webp" alt="Cheetah in red fur coat and sunglasses, representing bold premium design" loading="eager">
+      <img src="assets/hero-cheetah.webp" alt="Cheetah in red fur coat and sunglasses, representing bold premium design" loading="eager" id="heroImg">
+      <!-- .hero-fit is positioned/sized by JS (see script at bottom) to exactly
+           match the image's rendered content box, so the effects below always
+           land on the cheetah itself instead of the empty letterboxed area. -->
+      <div class="hero-fit" id="heroFit">
+        <!-- Effect 1: drifting studio softbox lights (see PREMIUM STUDIO LIGHTING in <style>) -->
+        <div class="hero-lights">
+          <div class="light light-1"></div>
+          <div class="light light-2"></div>
+          <div class="light light-3"></div>
+        </div>
+        <!-- Effect 2: periodic glossy sweep across the sunglasses (see LUXURY SUNGLASSES REFLECTION in <style>) -->
+        <div class="hero-sheen">
+          <div class="hero-sheen-streak"></div>
+        </div>
+      </div>
       <div class="hero-grain"></div>
     </div>
     <div class="panel-content hero-text">
@@ -624,6 +766,7 @@
       <a href="portfolio.html" class="cta"><span class="ico">⊟</span>Explore Our Work</a>
       <div class="locations">LONDON&nbsp;&nbsp;·&nbsp;&nbsp;DUBAI&nbsp;&nbsp;·&nbsp;&nbsp;MUMBAI</div>
     </div>
+    <a href="portfolio.html" class="cta hero-cta-mobile"><span class="ico">⊟</span>Explore Our Work</a>
   </section>
 
   <section class="panel dark" id="p1">
@@ -733,6 +876,57 @@
     pctText.textContent = Math.floor(pct)+'%';
     pctBar.style.width = pct+'%';
   }, 180);
+
+  // ---------- Position hero lighting effects over the real image ----------
+  // .hero-image uses object-fit:contain with object-position:bottom right,
+  // so the rendered cheetah photo can occupy only a fraction of the tall
+  // container (the rest is empty letterboxed space). This computes the
+  // exact rect the image content actually occupies and sizes/positions
+  // #heroFit to match it, so the light/sheen layers always land on the
+  // cheetah instead of on blank space.
+  (function(){
+    const img = document.getElementById('heroImg');
+    const fit = document.getElementById('heroFit');
+    if(!img || !fit) return;
+
+    function positionFit(){
+      const boxW = img.clientWidth, boxH = img.clientHeight;
+      const natW = img.naturalWidth, natH = img.naturalHeight;
+      if(!boxW || !boxH || !natW || !natH) return;
+
+      const boxRatio = boxW / boxH;
+      const natRatio = natW / natH;
+      let renderW, renderH;
+      if(natRatio > boxRatio){
+        // image is width-limited
+        renderW = boxW;
+        renderH = boxW / natRatio;
+      } else {
+        // image is height-limited
+        renderH = boxH;
+        renderW = boxH * natRatio;
+      }
+      // object-position: bottom right
+      const left = boxW - renderW;
+      const top = boxH - renderH;
+
+      fit.style.width = renderW + 'px';
+      fit.style.height = renderH + 'px';
+      fit.style.left = left + 'px';
+      fit.style.top = top + 'px';
+    }
+
+    if(img.complete && img.naturalWidth){
+      positionFit();
+    } else {
+      img.addEventListener('load', positionFit);
+    }
+    window.addEventListener('resize', positionFit);
+    window.addEventListener('orientationchange', positionFit);
+    // Fallback in case fonts/layout shift the container after initial paint
+    setTimeout(positionFit, 300);
+    setTimeout(positionFit, 1000);
+  })();
 
   // Sections
   const sections = Array.from(document.querySelectorAll('.panel'));
