@@ -349,7 +349,6 @@
     animation-name:galleryScrollDown;
     animation-duration:104s;
   }
-  .gallery-col:hover .gallery-track{animation-play-state:paused;}
   .gallery-item{
     position:relative;
     width:100%;
@@ -364,9 +363,44 @@
     width:100%;height:100%;
     object-fit:cover;
     display:block;
-    transition:transform .6s ease;
+    transition:filter .5s ease;
+    filter:saturate(0.82) brightness(0.95);
   }
-  .gallery-item:hover img{transform:scale(1.06);}
+  .gallery-item:hover img{filter:saturate(1) brightness(1.04);}
+  /* viewfinder grid overlay — fades in on hover instead of zooming or pausing the scroll */
+  .gallery-item::before,
+  .gallery-item::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:2;
+    pointer-events:none;
+    opacity:0;
+    transition:opacity .4s ease;
+  }
+  .gallery-item::before{
+    background-image:
+      linear-gradient(rgba(255,255,255,0.55) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.55) 1px, transparent 1px);
+    background-size:33.34% 33.34%;
+    mix-blend-mode:overlay;
+  }
+  .gallery-item::after{
+    inset:9px;
+    background:
+      linear-gradient(to right, var(--white) 2px, transparent 2px) top left,
+      linear-gradient(to bottom, var(--white) 2px, transparent 2px) top left,
+      linear-gradient(to left, var(--white) 2px, transparent 2px) top right,
+      linear-gradient(to bottom, var(--white) 2px, transparent 2px) top right,
+      linear-gradient(to right, var(--white) 2px, transparent 2px) bottom left,
+      linear-gradient(to top, var(--white) 2px, transparent 2px) bottom left,
+      linear-gradient(to left, var(--white) 2px, transparent 2px) bottom right,
+      linear-gradient(to top, var(--white) 2px, transparent 2px) bottom right;
+    background-repeat:no-repeat;
+    background-size:16px 2px, 2px 16px, 16px 2px, 2px 16px, 16px 2px, 2px 16px, 16px 2px, 2px 16px;
+  }
+  .gallery-item:hover::before,
+  .gallery-item:hover::after{opacity:1;}
   @keyframes galleryScrollUp{
     0%{transform:translateY(0);}
     100%{transform:translateY(-50%);}
