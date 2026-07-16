@@ -84,6 +84,7 @@
     -webkit-font-smoothing:antialiased;
   }
   ::selection{background:var(--red);color:var(--white);}
+  .mobile-break{display:none;} /* becomes display:block on mobile — controlled line breaks without touching desktop */
 
   /* ---------- GRAIN OVERLAY ---------- */
   #grain{
@@ -493,8 +494,8 @@
     }
     #p0 .hero-text p{
       display:block;
-      font-size:0.8rem;
-      line-height:1.5;
+      font-size:0.85rem;
+      line-height:1.58;
       margin-bottom:0;
       max-width:88%;
     }
@@ -683,6 +684,7 @@
     text-decoration:none;
     transition:transform .25s, background .25s, color .25s, box-shadow .25s;
     border:2px solid transparent;
+    border-radius:100px;
     overflow:hidden;
     isolation:isolate;
   }
@@ -693,7 +695,7 @@
   }
   .cta:hover::before{transform:translateX(120%);transition:transform .75s ease;}
   .panel.light .cta{background:var(--ink);color:var(--white);}
-  .panel.light .cta:hover{background:var(--red);box-shadow:0 10px 28px rgba(217,28,43,0.32);}
+  .panel.light .cta:hover{background:var(--red);}
   .panel.dark .cta{background:var(--white);color:var(--red-deep);}
   .panel.dark .cta:hover{background:var(--ink);color:var(--white);}
   .cta:hover{transform:translateY(-2px);}
@@ -710,10 +712,9 @@
     z-index:5;
     background:var(--red);
     color:var(--white);
-    box-shadow:0 14px 32px rgba(217,28,43,0.4);
     white-space:nowrap;
   }
-  #p0 .hero-gallery-cta:hover{background:var(--red-deep);box-shadow:0 14px 32px rgba(217,28,43,0.4);}
+  #p0 .hero-gallery-cta:hover{background:var(--red-deep);}
   @media(max-width:900px){
     #p0 .hero-gallery-cta{display:none;}
   }
@@ -843,13 +844,13 @@
       margin-bottom:12px;
       font-size:clamp(1.6rem, 7.4vw, 2.1rem) !important;
     }
-    .bio-text p{font-size:0.76rem;line-height:1.48;}
+    .bio-text p{font-size:0.84rem;line-height:1.6;}
     .bio-text p + p{margin-top:8px;}
     .bio-stats{grid-template-columns:repeat(3,auto);gap:12px 16px;margin-top:16px;padding-top:14px;}
     .bio-stat-num{font-size:1.35rem;}
   }
 
-  /* ---------- BRAND LENS AI PANEL (p1) ---------- */
+  /* ---------- BEYOND BRANDING PANEL (p1) ---------- */
   #p1{
     justify-content:center;
     padding:126px clamp(24px,6vw,72px) 44px;
@@ -884,7 +885,26 @@
     margin-bottom:12px;
   }
   #p1 .panel-content p{margin-bottom:20px;max-width:460px;}
-  .showcase-cta{white-space:nowrap;margin-bottom:26px;}
+
+  .showcase-cta-group{
+    display:flex;align-items:center;justify-content:center;flex-wrap:wrap;
+    gap:14px;margin-top:26px;
+  }
+  .cta-primary{white-space:nowrap;}
+  .cta-secondary{
+    white-space:nowrap;
+    background:transparent !important;
+    border:1.5px solid rgba(250,249,247,0.32) !important;
+    color:var(--white) !important;
+    box-shadow:none;
+    padding:14px 24px;
+  }
+  .cta-secondary::before{display:none;}
+  .cta-secondary:hover{
+    background:rgba(250,249,247,0.1) !important;
+    border-color:rgba(250,249,247,0.55) !important;
+    color:var(--white) !important;
+  }
 
   .showcase-visual{
     position:relative;
@@ -934,38 +954,22 @@
     font-family:'Inter',sans-serif;font-size:0.72rem;letter-spacing:0.08em;
     text-transform:uppercase;opacity:0.65;
   }
-  .score-chip{
-    position:absolute;top:-14px;right:12px;width:58px;height:58px;border-radius:50%;
-    background:var(--ink);color:var(--white);
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    font-family:'Archivo',sans-serif;z-index:4;
-    animation:pulseRing 2.6s ease-out infinite;
-  }
-  .score-chip .score-num{font-size:1.08rem;font-weight:800;line-height:1;}
-  .score-chip .score-lab{font-size:0.48rem;letter-spacing:0.04em;opacity:0.6;}
-  @keyframes pulseRing{
-    0%{box-shadow:0 0 0 0 rgba(217,28,43,0.5);}
-    70%{box-shadow:0 0 0 16px rgba(217,28,43,0);}
-    100%{box-shadow:0 0 0 0 rgba(217,28,43,0);}
-  }
-
   @media(max-width:900px){
-    #p1{padding:calc(88px + env(safe-area-inset-top)) 20px calc(96px + env(safe-area-inset-bottom));}
+    #p1{padding:calc(84px + env(safe-area-inset-top)) 20px calc(60px + env(safe-area-inset-bottom));}
     #p1 .panel-content{max-width:100%;}
     #p1 .panel-content h2{font-size:clamp(1.5rem, 7vw, 2rem);}
     #p1 .panel-content p{max-width:100%;font-size:0.86rem;margin-bottom:18px;}
-    .showcase-cta{margin-bottom:20px;}
+    .showcase-cta-group{margin-top:20px;gap:10px;}
+    .cta-secondary{padding:12px 20px;}
     .showcase-visual{padding:14px;border-radius:16px;max-width:100%;}
     .morph-stage{height:170px;border-radius:10px;}
-    .score-chip{width:50px;height:50px;top:-10px;right:6px;}
-    .score-chip .score-num{font-size:0.94rem;}
   }
   @media(max-width:900px) and (max-height:700px){
     #p1{padding-top:calc(76px + env(safe-area-inset-top));padding-bottom:calc(84px + env(safe-area-inset-bottom));}
     #p1 .panel-content .tag{margin-bottom:8px;}
     #p1 .panel-content h2{margin-bottom:8px;}
     #p1 .panel-content p{margin-bottom:12px;}
-    .showcase-cta{margin-bottom:14px;}
+    .showcase-cta-group{margin-top:14px;}
     .morph-stage{height:130px;}
   }
 
@@ -997,31 +1001,20 @@
   #menuBtn .grid{font-size:1rem;line-height:1;}
   @media(max-width:900px){
     header{
-      padding:14px 18px;
+      padding:16px 20px;
       position:fixed;
-      background:rgba(255,255,255,0);
-      backdrop-filter:blur(0px) saturate(100%);
-      -webkit-backdrop-filter:blur(0px) saturate(100%);
-      border-bottom:1px solid rgba(255,255,255,0);
-      box-shadow:0 1px 0 rgba(19,17,19,0), 0 14px 30px -16px rgba(19,17,19,0);
-      transition:background .4s ease, box-shadow .4s ease, backdrop-filter .4s ease, border-color .4s ease;
+      background:rgba(250,249,247,0.86);
+      backdrop-filter:blur(20px) saturate(180%);
+      -webkit-backdrop-filter:blur(20px) saturate(180%);
+      border-bottom:1px solid rgba(19,17,19,0.08);
+      box-shadow:none;
+      transition:background .4s ease, border-color .4s ease;
     }
     header.header-scrolled{
-      background:rgba(255,255,255,0.58);
-      backdrop-filter:blur(28px) saturate(190%);
-      -webkit-backdrop-filter:blur(28px) saturate(190%);
-      border-bottom:1px solid rgba(255,255,255,0.5);
-      box-shadow:0 1px 0 rgba(19,17,19,0.05), 0 14px 30px -16px rgba(19,17,19,0.16);
+      background:rgba(250,249,247,0.92);
+      border-bottom:1px solid rgba(19,17,19,0.1);
     }
-    header::before{
-      content:"";
-      position:absolute;left:0;right:0;top:0;height:1px;
-      background:linear-gradient(90deg,transparent,rgba(255,255,255,0.9) 50%,transparent);
-      pointer-events:none;
-      opacity:0;
-      transition:opacity .4s ease;
-    }
-    header.header-scrolled::before{opacity:1;}
+    header::before{display:none;}
     /* logo always keeps its own two-tone identity on mobile, regardless of
        section theme underneath the glass — the blur/vibrancy does the work
        of staying legible on red, so the wordmark never needs to flatten to white */
@@ -1143,7 +1136,73 @@
   #menuOverlay .socials a{color:var(--white);text-decoration:none;opacity:0.8;}
   #menuOverlay .socials a:hover{opacity:1;color:var(--ink);}
 
-  /* ---------- PAGE WIPE TRANSITION ---------- */
+  /* ---------- MOBILE REFINEMENTS (kept from review) ---------- */
+  @media(max-width:900px){
+
+    /* -- "seamless iPhone" fix: use the stable smallest-viewport unit
+       instead of dvh, so the section height doesn't jump/crop as
+       Safari's address bar shows and hides. Snap-scroll behaviour is
+       untouched — this only swaps which viewport unit governs height. -- */
+    #scroller{height:100svh;}
+    section.panel{height:100svh;}
+
+    /* -- rounded, shadow-free CTA — only on the buttons that got
+       the thumbs up (hero "Explore Our Work" + the two Beyond Branding
+       CTAs). Everything else keeps its original CTA styling. -- */
+    #p0 .hero-cta-mobile,
+    #p1 .showcase-cta-group .cta{
+      border-radius:100px;
+      box-shadow:none;
+    }
+    #p0 .hero-cta-mobile:active{box-shadow:none;}
+
+    /* -- featured projects: quieter cards, thin border instead of a
+       stacked shadow -- */
+    .mgp-card{box-shadow:none;border:1px solid var(--line-on-white);}
+    .mgp-card.is-active{box-shadow:none;}
+    .mgp-card .mgp-tag{background:rgba(19,17,19,0.5);}
+    .mgp-card{flex-basis:82%;} /* a touch narrower so the next card peeks in more */
+
+    /* -- founder slide: same background tone + image treatment as the
+       featured-projects slide (hairline border, no heavy shadow) -- */
+    #p3b{background:#FAFAFA;}
+    #p3b .bio-photo{
+      border-radius:26px;
+      box-shadow:none;
+      border:1px solid var(--line-on-white);
+    }
+
+    /* -- last section: same background treatment as Brand Lens AI -- */
+    #p5 .lens-grid{
+      position:absolute;inset:0;z-index:1;pointer-events:none;
+      background-image:
+        linear-gradient(rgba(250,249,247,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(250,249,247,0.06) 1px, transparent 1px);
+      background-size:56px 56px;
+      mask-image:radial-gradient(ellipse 75% 70% at 50% 45%, black 30%, transparent 85%);
+      -webkit-mask-image:radial-gradient(ellipse 75% 70% at 50% 45%, black 30%, transparent 85%);
+    }
+    #p5 .bg{
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 18%, rgba(250,249,247,0.14), transparent 70%),
+        radial-gradient(ellipse 50% 45% at 88% 88%, rgba(250,249,247,0.08), transparent 70%);
+    }
+    #p5 .cta{border-radius:100px;box-shadow:none;}
+
+    /* -- headline broken into clean, balanced lines instead of an
+       unpredictable auto-wrap -- */
+    .mobile-break{display:block;}
+  }
+  @media(max-width:900px) and (min-height:701px){
+    #p1 .panel-content .tag{margin-bottom:14px;}
+    #p1 .panel-content h2{margin-bottom:14px;}
+    #p1 .panel-content p{margin-bottom:26px;}
+    .showcase-cta-group{margin-top:24px;}
+    .showcase-visual{padding:16px;}
+    .morph-stage{height:180px;}
+  }
+
+
   #wipe{
     position:fixed;inset:0;z-index:2000;
     background:var(--red);
@@ -1282,27 +1341,29 @@
     <div class="bg"></div>
     <div class="lens-grid" aria-hidden="true"></div>
     <div class="panel-content">
-      <div class="tag">Brand Lens AI</div>
-      <h2>See your brand before you build it.</h2>
-      <p>Upload your logo, website or packaging and get an AI generated premium redesign concept in seconds.</p>
-      <a href="ai-revamp.html" class="cta showcase-cta"><span class="ico">→</span>Try Brand Lens AI</a>
+      <div class="tag">Beyond Branding</div>
+      <h2>We turn ordinary brands into memorable ones.</h2>
+      <p>From identity to strategy, we help brands look and feel like they belong in 2026 — not 2014.</p>
       <div class="showcase-visual">
         <div class="frame-topbar">
           <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-          <span class="frame-label">BRAND LENS AI</span>
+          <span class="frame-label">BEYOND BRANDING</span>
         </div>
         <div class="morph-stage">
           <div class="scan"></div>
           <div class="state state-before">
-            <div class="mock-logo">ACME CO.</div>
-            <div class="mock-tagline">Est. 2014 · Before</div>
+            <div class="mock-logo">NOVA FOODS</div>
+            <div class="mock-tagline">Est. 2011 · Before</div>
           </div>
           <div class="state state-after">
-            <div class="mock-logo">ACME<span class="red">.</span></div>
-            <div class="mock-tagline">Premium, restated · After</div>
+            <div class="mock-logo">NOVA<span class="red">.</span></div>
+            <div class="mock-tagline">Premium, reimagined · After</div>
           </div>
         </div>
-        <div class="score-chip"><span class="score-num">92</span><span class="score-lab">/100</span></div>
+      </div>
+      <div class="showcase-cta-group">
+        <a href="http://wa.me/919981947010" target="_blank" class="cta cta-primary"><span class="ico">→</span>Book a Brand Consultation</a>
+        <a href="ai-revamp.html" class="cta cta-secondary"><span class="ico">→</span>Try Brand Lens AI</a>
       </div>
     </div>
   </section>
@@ -1330,8 +1391,9 @@
 
   <section class="panel dark" id="p5">
     <div class="bg"></div>
+    <div class="lens-grid" aria-hidden="true"></div>
     <div class="panel-content">
-      <h2>Bring us the brief. We'll bring the direction</h2>
+      <h2>Bring us the brief.<span class="mobile-break"></span> We'll bring<span class="mobile-break"></span> the direction</h2>
       <p>No forms that disappear into an inbox. Message directly and hear back from the people actually doing the work.</p>
       <a href="http://wa.me/919981947010" target="_blank" class="cta"><span class="ico">⊟</span>Work With Us</a>
     </div>
