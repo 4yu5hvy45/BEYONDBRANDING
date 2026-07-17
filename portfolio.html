@@ -13,6 +13,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/aeroengines-america-booth.webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/aiolec-brochure-laptop.webp" fetchpriority="high">
+<link rel="preload" as="image" href="assets/colorado-windows-newspaper-ad.webp" fetchpriority="high">
 <style>
   :root{
     --white:#FAF9F7;
@@ -23,6 +26,11 @@
     --muted-on-red:rgba(250,249,247,0.72);
     --line-on-white: rgba(19,17,19,0.14);
     --line-on-red: rgba(250,249,247,0.24);
+    --ease: cubic-bezier(.22,1,.36,1);
+    --ease-soft: cubic-bezier(.16,1,.3,1);
+    --ease-premium: cubic-bezier(.19,1,.22,1);
+    --shadow-frame: 0 1px 2px rgba(19,17,19,0.04), 0 18px 40px -12px rgba(19,17,19,0.10);
+    --shadow-frame-hover: 0 1px 2px rgba(19,17,19,0.04), 0 26px 56px -14px rgba(19,17,19,0.16);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html.lenis{height:auto;}
@@ -94,15 +102,16 @@
     font-size:0.74rem;letter-spacing:0.05em;text-transform:uppercase;
     text-decoration:none;
     border-radius:100px;
-    transition:background .3s ease, transform .3s ease;
+    transition:background .45s var(--ease-premium), transform .45s var(--ease-premium);
   }
   header .back-btn:hover{background:var(--red);transform:translateY(-1px);}
+  header .back-btn:active{transform:translateY(0);}
   header .back-btn .arrow{font-size:0.95em;}
   @media(max-width:900px){
     header{padding:14px 18px;}
   }
   @media(max-width:480px){
-    header .back-btn{padding:12px;width:40px;height:40px;justify-content:center;gap:0;}
+    header .back-btn{padding:12px;width:44px;height:44px;justify-content:center;gap:0;}
     header .back-btn .txt{display:none;}
   }
 
@@ -119,91 +128,119 @@
     font-family:'Archivo',sans-serif;font-weight:700;
     font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;
     text-decoration:none;color:var(--white);background:var(--ink);
-    transition:transform .25s, background .25s, box-shadow .25s;
+    transition:transform .5s var(--ease-premium), background .4s var(--ease-premium), box-shadow .5s var(--ease-premium);
   }
-  .cta:hover{background:var(--red);box-shadow:0 10px 28px rgba(217,28,43,0.32);transform:translateY(-2px);}
+  .cta:hover{background:var(--red);box-shadow:0 14px 36px rgba(217,28,43,0.28);transform:translateY(-2px);}
+  .cta:active{transform:translateY(0);box-shadow:0 6px 16px rgba(217,28,43,0.24);}
   .cta .ico{font-size:0.95em;}
 
   /* ---------- MASTHEAD ---------- */
   .masthead{
-    padding:calc(120px + env(safe-area-inset-top)) clamp(24px,6vw,72px) 80px;
+    padding:calc(132px + env(safe-area-inset-top)) clamp(24px,6vw,72px) 104px;
     max-width:1200px;
   }
   .masthead .kicker{
     display:flex;align-items:center;gap:9px;
     font-family:'Archivo',sans-serif;font-weight:700;color:var(--red);
     font-size:0.78rem;letter-spacing:0.16em;text-transform:uppercase;
-    margin-bottom:24px;
+    margin-bottom:28px;
   }
   .masthead .kicker::before{content:"";width:8px;height:8px;background:var(--red);flex-shrink:0;}
   .masthead h1{
     font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;
-    letter-spacing:-0.01em;line-height:0.96;
-    font-size:clamp(2.6rem,7vw,5.4rem);
-    max-width:960px;
-    margin-bottom:34px;
+    letter-spacing:-0.02em;line-height:1.01;
+    font-size:clamp(2.5rem,7vw,5.4rem);
+    max-width:900px;
+    margin-bottom:36px;
   }
   .masthead .note{
     max-width:640px;
-    padding-left:20px;
+    padding-left:22px;
     border-left:3px solid var(--red);
-    font-size:clamp(1rem,1.6vw,1.14rem);
-    line-height:1.65;
+    font-size:clamp(1.02rem,1.5vw,1.16rem);
+    line-height:1.7;
     color:rgba(19,17,19,0.68);
   }
   @media(max-width:900px){
-    .masthead{padding:calc(100px + env(safe-area-inset-top)) 20px 50px;}
-    .masthead .note{padding-left:16px;}
+    .masthead{padding:calc(108px + env(safe-area-inset-top)) 20px 60px;}
+    .masthead h1{max-width:100%;margin-bottom:28px;font-size:clamp(2.15rem,8.5vw,3.4rem);letter-spacing:-0.015em;}
+    .masthead .note{padding-left:16px;max-width:48ch;}
   }
 
   /* ---------- WORK GRID (all shots, 4:5) ---------- */
   .work-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:clamp(22px,2.8vw,40px);
+    gap:clamp(26px,3.2vw,48px);
     max-width:1440px;
     margin:0 auto;
-    padding:0 clamp(24px,6vw,72px) 40px;
+    padding:0 clamp(24px,6vw,72px) 56px;
   }
   .grid-shot{
     position:relative;
     aspect-ratio:4/5;
     overflow:hidden;
-    border-radius:20px;
+    border-radius:28px; /* fixed px, Apple-Card proportioned — not a % clip-path, so it never balloons on tall cards */
     background:#EFEDE9;
-    box-shadow:0 1px 2px rgba(19,17,19,0.05);
+    box-shadow:var(--shadow-frame);
   }
   .grid-shot img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;}
+  /* subtle premium overlay on hover — a whisper of white sheen, not a dramatic scrim */
+  .grid-shot::after,.story-frame::after{
+    content:"";position:absolute;inset:0;z-index:2;
+    background:rgba(255,255,255,0.08);
+    opacity:0;transition:opacity .6s var(--ease-premium);
+    pointer-events:none;
+  }
+  .grid-shot.in-view:hover::after,.story-frame:hover::after{opacity:1;}
+  .grid-shot.in-view:hover,.story-frame:hover{box-shadow:var(--shadow-frame-hover);transform:translateY(-4px);}
+
+  /* Images gently fade into place once decoded — no shimmer, no blur, no scale-punch.
+     The frame's placeholder tone (background above) is quiet enough that nothing ever
+     reads as "loading"; the image simply resolves. Runs independent of the container's
+     scroll-reveal, so a slow network never shows a container animate in around a blank frame. */
+  .grid-shot,.story-frame{position:relative;}
+  .grid-shot img,.story-frame img{
+    opacity:0;
+    transition:opacity .7s var(--ease-soft), transform .6s var(--ease);
+  }
+  .grid-shot.img-loaded img,.story-frame.img-loaded img{
+    opacity:1;
+  }
+  @media(prefers-reduced-motion:reduce){
+    .grid-shot img,.story-frame img{transition:opacity .3s ease;}
+  }
   @media(max-width:900px){
-    .work-grid{grid-template-columns:repeat(2,1fr);padding:0 20px 30px;}
-    .grid-shot{border-radius:16px;}
+    .work-grid{grid-template-columns:repeat(2,1fr);gap:20px;padding:0 20px 40px;}
+    .grid-shot{border-radius:18px;}
   }
   @media(max-width:520px){
-    .work-grid{grid-template-columns:1fr;}
+    .work-grid{grid-template-columns:1fr;gap:22px;}
   }
   .grid-shot{
-    opacity:0;transform:translateY(28px) scale(0.98);
-    transition:opacity 1s cubic-bezier(.16,1,.3,1), transform 1s cubic-bezier(.16,1,.3,1), box-shadow .45s ease;
+    opacity:0;transform:translateY(22px);
+    transition:opacity .8s var(--ease-soft), transform .8s var(--ease-soft), box-shadow .6s var(--ease-premium);
   }
-  .grid-shot.in-view{opacity:1;transform:translateY(0) scale(1);}
-  .grid-shot.in-view:hover{
-    transform:translateY(-6px) scale(1);
-    box-shadow:0 24px 44px rgba(19,17,19,0.16);
-    transition:transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s cubic-bezier(.16,1,.3,1);
+  .grid-shot.in-view{opacity:1;transform:translateY(0);}
+  .grid-shot.in-view:hover img,
+  .story-frame:hover img{
+    transform:scale(1.03);
   }
+  .story-frame:hover{box-shadow:var(--shadow-frame-hover);transform:translateY(-4px);}
   @media(hover:none){
-    .grid-shot.in-view:hover{transform:translateY(0) scale(1);box-shadow:0 1px 2px rgba(19,17,19,0.05);}
+    .grid-shot.in-view:hover img,.story-frame:hover img{transform:scale(1);}
+    .grid-shot.in-view:hover,.story-frame:hover{transform:none;}
   }
 
   /* ---------- FEATURED CASE STUDIES (interspersed in grid) ---------- */
   .story{
     grid-column:1 / -1;
-    display:flex;align-items:center;gap:clamp(40px,6vw,100px);
-    padding:clamp(50px,7vh,100px) 0;
+    display:flex;align-items:center;gap:clamp(48px,6.4vw,112px);
+    padding:clamp(64px,8vh,120px) 0;
     border-top:1px solid var(--line-on-white);
     border-bottom:1px solid var(--line-on-white);
-    opacity:0;transform:translateY(48px);
-    transition:opacity 1.15s cubic-bezier(.16,1,.3,1), transform 1.15s cubic-bezier(.16,1,.3,1);
+    opacity:0;transform:translateY(22px);
+    transition:opacity .8s var(--ease-soft), transform .8s var(--ease-soft);
   }
   .story.in-view{opacity:1;transform:translateY(0);}
   .story.story-rev{flex-direction:row-reverse;}
@@ -216,8 +253,9 @@
     aspect-ratio:4/5;
     background:#F1EFEB;
     overflow:hidden;
-    border-radius:24px;
-    box-shadow:0 1px 2px rgba(19,17,19,0.05);
+    border-radius:30px;
+    box-shadow:var(--shadow-frame);
+    transition:box-shadow .6s var(--ease-premium), transform .6s var(--ease-premium);
   }
   .story-frame img{
     width:100%;height:100%;
@@ -226,33 +264,34 @@
     display:block;
   }
   @media(max-width:1000px){
-    .story-frame{border-radius:18px;}
+    .story-frame{border-radius:20px;}
   }
   .story-text{flex:1 1 0;min-width:0;}
   .story-tag{
     font-family:'Archivo',sans-serif;font-weight:700;color:var(--red);
     font-size:0.76rem;letter-spacing:0.14em;text-transform:uppercase;
-    margin-bottom:14px;
+    margin-bottom:16px;
   }
   .story-text h2{
     font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;
-    letter-spacing:-0.01em;line-height:1.02;
+    letter-spacing:-0.015em;line-height:1.08;
     font-size:clamp(1.7rem,3.4vw,2.6rem);
-    margin-bottom:20px;
+    margin-bottom:24px;
     max-width:420px;
   }
   .story-text p{
-    font-size:1rem;line-height:1.7;color:rgba(19,17,19,0.66);
-    max-width:420px;margin-bottom:22px;
+    font-size:1.02rem;line-height:1.76;color:rgba(19,17,19,0.66);
+    max-width:44ch;margin-bottom:28px;
   }
+  .story-text p strong{color:var(--ink);font-weight:600;}
   .story-meta{
     font-family:'Archivo',sans-serif;font-weight:600;font-size:0.74rem;
     letter-spacing:0.05em;color:var(--muted-on-white);
-    padding-top:18px;border-top:1px solid var(--line-on-white);
+    padding-top:22px;border-top:1px solid var(--line-on-white);
     max-width:420px;
   }
   @media(max-width:1000px){
-    .story{flex-direction:column !important;gap:34px;padding:44px 0;}
+    .story{flex-direction:column !important;gap:30px;padding:48px 0;}
     .story-media{flex:none;max-width:100%;width:100%;}
     .story-text{width:100%;}
     .story-text h2,.story-text p,.story-meta{max-width:100%;}
@@ -261,33 +300,37 @@
   /* ---------- CLOSE / CONTACT ---------- */
   .close-cta{
     background:var(--red);color:var(--white);
-    padding:110px clamp(24px,6vw,72px) 70px;
+    padding:132px clamp(24px,6vw,72px) 84px;
   }
   .close-cta .inner{max-width:760px;margin:0 auto;text-align:left;}
   .close-cta .tag{
     display:flex;align-items:center;gap:9px;
     font-family:'Archivo',sans-serif;font-weight:700;
-    font-size:0.78rem;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:22px;
+    font-size:0.78rem;letter-spacing:0.16em;text-transform:uppercase;margin-bottom:26px;
   }
   .close-cta .tag::before{content:"";width:8px;height:8px;background:var(--white);}
   .close-cta h2{
     font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;
-    letter-spacing:-0.01em;line-height:1.0;
-    font-size:clamp(2rem,5vw,3.4rem);margin-bottom:24px;
+    letter-spacing:-0.015em;line-height:1.06;
+    font-size:clamp(2rem,5vw,3.4rem);margin-bottom:28px;
   }
-  .close-cta p{font-size:1.02rem;line-height:1.65;color:var(--muted-on-red);max-width:560px;margin-bottom:34px;}
+  .close-cta p{font-size:1.04rem;line-height:1.72;color:var(--muted-on-red);max-width:560px;margin-bottom:38px;}
   .close-cta .cta{background:var(--white);color:var(--red-deep);}
   .close-cta .cta:hover{background:var(--ink);color:var(--white);}
   .site-footer{
-    margin-top:60px;padding-top:26px;border-top:1px solid var(--line-on-red);
-    display:flex;flex-wrap:wrap;gap:8px 22px;
+    margin-top:72px;padding-top:28px;border-top:1px solid var(--line-on-red);
+    display:flex;flex-wrap:wrap;gap:10px 22px;
     font-family:'Archivo',sans-serif;font-weight:600;
     font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;
   }
-  .site-footer a{color:inherit;text-decoration:none;opacity:0.7;transition:opacity .2s;}
+  .site-footer .fs-tagline{
+    width:100%;margin-bottom:6px;opacity:0.82;font-weight:500;
+    letter-spacing:0.02em;text-transform:none;font-size:0.82rem;
+  }
+  .site-footer a{color:inherit;text-decoration:none;opacity:0.7;transition:opacity .45s var(--ease-premium);}
   .site-footer a:hover{opacity:1;}
-  .site-footer .fs-copy{opacity:0.5;width:100%;margin-top:6px;font-weight:500;letter-spacing:0.02em;text-transform:none;}
-  @media(max-width:900px){.close-cta{padding:70px 20px 50px;}}
+  .site-footer .fs-copy{opacity:0.5;width:100%;margin-top:8px;font-weight:500;letter-spacing:0.02em;text-transform:none;}
+  @media(max-width:900px){.close-cta{padding:84px 20px 60px;}}
 
   @media(prefers-reduced-motion:reduce){
     .story,.grid-shot{opacity:1;transform:none;transition:none;}
@@ -316,51 +359,51 @@
 
   <section class="masthead">
     <div class="kicker">Work</div>
-    <h1>A closer look at what we've shipped</h1>
-    <p class="note">Every piece here is directed and finished by our team. AI sits inside the workflow to speed up production, it doesn't do the thinking.</p>
+    <h1>Selected work. Built with intention.</h1>
+    <p class="note">Every project starts with a business problem—not a design brief. From hospitality and luxury retail to startups and global brands, this is a curated selection of work designed to create stronger first impressions and lasting brand value.</p>
   </section>
 
   <section class="work-grid">
 
-    <div class="grid-shot"><img src="assets/aeroengines-america-booth.webp" alt="Aeroengines America exhibition booth" loading="lazy"></div>
-    <div class="grid-shot"><img src="assets/aiolec-brochure-laptop.webp" alt="Aiolec London brochure design" loading="lazy"></div>
-    <div class="grid-shot"><img src="assets/colorado-windows-newspaper-ad.webp" alt="Colorado Windows Direct print advertising campaign" loading="lazy"></div>
+    <div class="grid-shot"><img src="assets/aeroengines-america-booth.webp" alt="Aeroengines America exhibition booth" loading="eager" fetchpriority="high" decoding="async"></div>
+    <div class="grid-shot"><img src="assets/aiolec-brochure-laptop.webp" alt="Aiolec London brochure design" loading="eager" fetchpriority="high" decoding="async"></div>
+    <div class="grid-shot"><img src="assets/colorado-windows-newspaper-ad.webp" alt="Colorado Windows Direct print advertising campaign" loading="eager" fetchpriority="high" decoding="async"></div>
 
     <article class="story" id="s01">
       <div class="story-media">
-        <div class="story-frame"><img src="assets/dubai-media-office-stage.webp" alt="Dubai Government Media Office annual forum stage branding" loading="lazy"></div>
+        <div class="story-frame"><img src="assets/dubai-media-office-stage.webp" alt="Dubai Government Media Office annual forum stage branding" loading="lazy" decoding="async"></div>
       </div>
       <div class="story-text">
         <div class="story-tag">Government · Dubai</div>
         <h2>Dubai Media Office</h2>
-        <p>Bilingual Arabic and English social content and stage branding built under fast turnaround, keeping national announcements consistent across a global audience.</p>
+        <p><strong>Built for clarity at scale.</strong> Supporting national announcements means every visual must communicate instantly across languages, platforms and audiences. We developed bilingual campaign assets and event graphics that remained consistent under demanding timelines while respecting an established government identity.</p>
         <div class="story-meta">Social Content · Stage Branding · Design Collaterals</div>
       </div>
     </article>
 
-    <div class="grid-shot"><img src="assets/dhanraj-jain-jewellers-counter.webp" alt="Dhanraj Jain Jewellers store counter branding" loading="lazy"></div>
-    <div class="grid-shot"><img src="assets/doubletree-hilton-signage.webp" alt="DoubleTree by Hilton signage" loading="lazy"></div>
-    <div class="grid-shot"><img src="assets/dubai-media-office-instagram.webp" alt="Dubai Media Office Instagram content" loading="lazy"></div>
+    <div class="grid-shot"><img src="assets/dhanraj-jain-jewellers-counter.webp" alt="Dhanraj Jain Jewellers store counter branding" loading="lazy" decoding="async"></div>
+    <div class="grid-shot"><img src="assets/doubletree-hilton-signage.webp" alt="DoubleTree by Hilton signage" loading="lazy" decoding="async"></div>
+    <div class="grid-shot"><img src="assets/dubai-media-office-instagram.webp" alt="Dubai Media Office Instagram content" loading="lazy" decoding="async"></div>
 
     <article class="story story-rev" id="s02">
       <div class="story-media">
-        <div class="story-frame"><img src="assets/marriott-indore-hamper.webp" alt="Marriott Indore festive hamper packaging" loading="lazy"></div>
+        <div class="story-frame"><img src="assets/marriott-indore-hamper.webp" alt="Marriott Indore festive hamper packaging" loading="lazy" decoding="async"></div>
       </div>
       <div class="story-text">
         <div class="story-tag">Hospitality</div>
         <h2>Marriott Indore</h2>
-        <p>Festive campaigns, takeaway packaging through Covid, sweet box design and marketing collateral across every guest touchpoint.</p>
+        <p><strong>Premium shouldn't stop at the dining table.</strong> During Covid, takeaway became part of the guest experience. We designed festive packaging, campaign assets and guest collateral that extended Marriott's premium identity beyond the hotel itself.</p>
         <div class="story-meta">Packaging · Campaign Design · Guest Collateral</div>
       </div>
     </article>
 
-    <div class="grid-shot"><img src="assets/gowardhan-ghee-amazon.webp" alt="Gowardhan Ghee Amazon listing design" loading="lazy"></div>
-    <div class="grid-shot"><img src="assets/myaccessiblehome-website.webp" alt="MyAccessibleHome website design" loading="lazy"></div>
-    <div class="grid-shot"><img src="assets/overcmr-paddles-display.webp" alt="OverCMR pickleball paddle product launch display" loading="lazy"></div>
+    <div class="grid-shot"><img src="assets/gowardhan-ghee-amazon.webp" alt="Gowardhan Ghee Amazon listing design" loading="lazy" decoding="async"></div>
+    <div class="grid-shot"><img src="assets/myaccessiblehome-website.webp" alt="MyAccessibleHome website design" loading="lazy" decoding="async"></div>
+    <div class="grid-shot"><img src="assets/overcmr-paddles-display.webp" alt="OverCMR pickleball paddle product launch display" loading="lazy" decoding="async"></div>
 
     <article class="story" id="s03">
       <div class="story-media">
-        <div class="story-frame"><img src="assets/valdaria-exhibition-booth.webp" alt="Valdaria premium suiting trade exhibition booth" loading="lazy"></div>
+        <div class="story-frame"><img src="assets/valdaria-exhibition-booth.webp" alt="Valdaria premium suiting trade exhibition booth" loading="lazy" decoding="async"></div>
       </div>
       <div class="story-text">
         <div class="story-tag">Luxury Retail</div>
@@ -370,13 +413,13 @@
       </div>
     </article>
 
-    <div class="grid-shot"><img src="assets/pride-of-cows-retail-signage.webp" alt="Pride of Cows retail signage" loading="lazy"></div>
-    <div class="grid-shot"><img src="assets/stanfords-real-estate-poolside.webp" alt="Stanford's Real Estate poolside campaign" loading="lazy"></div>
-    <div class="grid-shot"><img src="assets/xess-conference-stage.webp" alt="XESS energy storage conference presentation" loading="lazy"></div>
+    <div class="grid-shot"><img src="assets/pride-of-cows-retail-signage.webp" alt="Pride of Cows retail signage" loading="lazy" decoding="async"></div>
+    <div class="grid-shot"><img src="assets/stanfords-real-estate-poolside.webp" alt="Stanford's Real Estate poolside campaign" loading="lazy" decoding="async"></div>
+    <div class="grid-shot"><img src="assets/xess-conference-stage.webp" alt="XESS energy storage conference presentation" loading="lazy" decoding="async"></div>
 
     <article class="story story-rev" id="s04">
       <div class="story-media">
-        <div class="story-frame"><img src="assets/manek-brochure-bag.webp" alt="Manek luxury shirting brand collateral" loading="lazy"></div>
+        <div class="story-frame"><img src="assets/manek-brochure-bag.webp" alt="Manek luxury shirting brand collateral" loading="lazy" decoding="async"></div>
       </div>
       <div class="story-text">
         <div class="story-tag">Luxury Retail</div>
@@ -388,7 +431,7 @@
 
     <article class="story" id="s05">
       <div class="story-media">
-        <div class="story-frame"><img src="assets/indian-kawfee-jar.webp" alt="Indian Kawfee Company premium coffee packaging" loading="lazy"></div>
+        <div class="story-frame"><img src="assets/indian-kawfee-jar.webp" alt="Indian Kawfee Company premium coffee packaging" loading="lazy" decoding="async"></div>
       </div>
       <div class="story-text">
         <div class="story-tag">Packaging</div>
@@ -424,10 +467,14 @@
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(window.Lenis && !prefersReducedMotion){
     lenis = new Lenis({
-      duration: 1.15,
+      duration: 1,
       easing: (t) => 1 - Math.pow(1 - t, 4), // quart-out — smooth deceleration, no bounce
       smoothWheel: true,
       touchMultiplier: 1.1
+      // syncTouch intentionally left off: it replaces the OS's native momentum scroll
+      // with a synthetic eased one, which lags a beat behind the finger and reads as
+      // sticky/unresponsive on phones. apple.com does the same — smoothing is applied
+      // to mouse/trackpad wheel input only; touch scrolling stays native.
     });
     function raf(time){
       lenis.raf(time);
@@ -462,6 +509,21 @@
     });
   });
 
+  // Mark each image frame as loaded the moment its <img> actually finishes downloading —
+  // decoupled from the scroll-reveal IntersectionObservers below, so slow connections never
+  // show a container animate in with a blank/half-loaded image inside it.
+  document.querySelectorAll('.grid-shot, .story-frame').forEach(frame=>{
+    const img = frame.querySelector('img');
+    if(!img) return;
+    const markLoaded = ()=>frame.classList.add('img-loaded');
+    if(img.complete && img.naturalWidth > 0){
+      markLoaded();
+    } else {
+      img.addEventListener('load', markLoaded, {once:true});
+      img.addEventListener('error', markLoaded, {once:true}); // don't leave a shimmer stuck forever
+    }
+  });
+
   // Scroll reveal for editorial stories
   const stories = document.querySelectorAll('.story');
   const io = new IntersectionObserver((entries)=>{
@@ -471,7 +533,7 @@
         io.unobserve(e.target);
       }
     });
-  },{threshold:0.18});
+  },{threshold:0.12, rootMargin:'800px 0px'});
   stories.forEach(s=>io.observe(s));
 
   // Staggered reveal for the plain grid shots
@@ -483,7 +545,7 @@
         shotIo.unobserve(e.target);
       }
     });
-  },{threshold:0.15});
+  },{threshold:0.1, rootMargin:'800px 0px'});
   shots.forEach((s,i)=>{
     s.style.transitionDelay = (i%3)*90 + 'ms'; // stagger by column position within each row
     shotIo.observe(s);
