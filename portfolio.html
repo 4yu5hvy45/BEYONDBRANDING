@@ -12,7 +12,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/aeroengines-america-booth.webp" fetchpriority="high">
 <link rel="preload" as="image" href="assets/aiolec-brochure-laptop.webp" fetchpriority="high">
 <link rel="preload" as="image" href="assets/colorado-windows-newspaper-ad.webp" fetchpriority="high">
@@ -29,8 +29,8 @@
     --ease: cubic-bezier(.22,1,.36,1);
     --ease-soft: cubic-bezier(.16,1,.3,1);
     --ease-premium: cubic-bezier(.19,1,.22,1);
-    --shadow-frame: 0 1px 2px rgba(19,17,19,0.04), 0 18px 40px -12px rgba(19,17,19,0.10);
-    --shadow-frame-hover: 0 1px 2px rgba(19,17,19,0.04), 0 26px 56px -14px rgba(19,17,19,0.16);
+    --shadow-frame: 0 1px 2px rgba(19,17,19,0.03);
+    --shadow-frame-hover: 0 24px 48px -20px rgba(19,17,19,0.16);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
   html.lenis{height:auto;}
@@ -77,13 +77,14 @@
 
   header{
     position:fixed;top:0;left:0;right:0;z-index:300;
+    height:44px;
     display:flex;align-items:center;justify-content:space-between;
     gap:16px;
-    padding:16px clamp(20px,6vw,64px);
-    background:rgba(250,249,247,0.68);
+    padding:0 22px;
+    background:rgba(250,249,247,0.8);
     backdrop-filter:blur(20px) saturate(180%);
     -webkit-backdrop-filter:blur(20px) saturate(180%);
-    border-bottom:1px solid rgba(19,17,19,0.07);
+    border-bottom:1px solid rgba(19,17,19,0.08);
   }
   header .logo{
     flex:0 1 auto;min-width:0;
@@ -95,24 +96,29 @@
   header .logo em{color:var(--red);font-style:normal;}
   header .back-btn{
     flex:0 0 auto;
-    display:inline-flex;align-items:center;gap:8px;
-    background:var(--ink);color:var(--white);
-    padding:12px 20px;
-    font-family:'Archivo',sans-serif;font-weight:700;
-    font-size:0.74rem;letter-spacing:0.05em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(19,17,19,0.05);color:var(--ink);
+    height:28px;padding:0 16px;
+    font-family:'Inter',sans-serif;font-weight:500;
+    font-size:12px;letter-spacing:-0.01em;text-transform:none;
     text-decoration:none;
+    border:1px solid rgba(19,17,19,0.08);
     border-radius:100px;
-    transition:background .45s var(--ease-premium), transform .45s var(--ease-premium);
+    transition:background .35s var(--ease-premium), color .35s var(--ease-premium), border-color .35s var(--ease-premium), transform .25s var(--ease-premium);
   }
-  header .back-btn:hover{background:var(--red);transform:translateY(-1px);}
-  header .back-btn:active{transform:translateY(0);}
-  header .back-btn .arrow{font-size:0.95em;}
+  header .back-btn:hover{background:var(--ink);color:var(--white);border-color:var(--ink);}
+  header .back-btn:active{transform:scale(0.94);}
+  header .back-btn .arrow{font-size:0.9em;line-height:1;}
   @media(max-width:900px){
-    header{padding:14px 18px;}
+    header{padding:0 16px;}
   }
   @media(max-width:480px){
-    header .back-btn{padding:12px;width:44px;height:44px;justify-content:center;gap:0;}
+    header .back-btn{
+      width:36px;height:36px;padding:0;justify-content:center;gap:0;
+      border-radius:50%;
+    }
     header .back-btn .txt{display:none;}
+    header .back-btn .arrow{font-size:0.92rem;}
   }
 
   #topProgress{
@@ -136,7 +142,7 @@
 
   /* ---------- MASTHEAD ---------- */
   .masthead{
-    padding:calc(132px + env(safe-area-inset-top)) clamp(24px,6vw,72px) 104px;
+    padding:calc(104px + env(safe-area-inset-top)) clamp(24px,6vw,72px) 104px;
     max-width:1200px;
   }
   .masthead .kicker{
@@ -147,23 +153,24 @@
   }
   .masthead .kicker::before{content:"";width:8px;height:8px;background:var(--red);flex-shrink:0;}
   .masthead h1{
-    font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;
-    letter-spacing:-0.02em;line-height:1.01;
-    font-size:clamp(2.5rem,7vw,5.4rem);
-    max-width:900px;
-    margin-bottom:36px;
+    font-family:'Inter',sans-serif;font-weight:700;text-transform:none;
+    letter-spacing:-0.035em;line-height:1.08;
+    font-size:clamp(2.5rem,6.2vw,4.8rem);
+    max-width:840px;
+    margin-bottom:32px;
   }
   .masthead .note{
     max-width:640px;
     padding-left:22px;
-    border-left:3px solid var(--red);
-    font-size:clamp(1.02rem,1.5vw,1.16rem);
-    line-height:1.7;
-    color:rgba(19,17,19,0.68);
+    border-left:2px solid var(--red);
+    font-size:clamp(1.05rem,1.5vw,1.2rem);
+    line-height:1.75;
+    color:rgba(19,17,19,0.64);
+    font-weight:400;
   }
   @media(max-width:900px){
-    .masthead{padding:calc(108px + env(safe-area-inset-top)) 20px 60px;}
-    .masthead h1{max-width:100%;margin-bottom:28px;font-size:clamp(2.15rem,8.5vw,3.4rem);letter-spacing:-0.015em;}
+    .masthead{padding:calc(84px + env(safe-area-inset-top)) 20px 60px;}
+    .masthead h1{max-width:100%;margin-bottom:26px;font-size:clamp(2.05rem,8vw,3.1rem);letter-spacing:-0.03em;}
     .masthead .note{padding-left:16px;max-width:48ch;}
   }
 
@@ -180,7 +187,7 @@
     position:relative;
     aspect-ratio:4/5;
     overflow:hidden;
-    border-radius:28px; /* fixed px, Apple-Card proportioned — not a % clip-path, so it never balloons on tall cards */
+    border-radius:20px; /* Apple tile scale — tight, consistent radius rather than an oversized card curve */
     background:#EFEDE9;
     box-shadow:var(--shadow-frame);
   }
@@ -193,7 +200,7 @@
     pointer-events:none;
   }
   .grid-shot.in-view:hover::after,.story-frame:hover::after{opacity:1;}
-  .grid-shot.in-view:hover,.story-frame:hover{box-shadow:var(--shadow-frame-hover);transform:translateY(-4px);}
+  .grid-shot.in-view:hover,.story-frame:hover{box-shadow:var(--shadow-frame-hover);transform:translateY(-6px);}
 
   /* Images gently fade into place once decoded — no shimmer, no blur, no scale-punch.
      The frame's placeholder tone (background above) is quiet enough that nothing ever
@@ -212,7 +219,7 @@
   }
   @media(max-width:900px){
     .work-grid{grid-template-columns:repeat(2,1fr);gap:20px;padding:0 20px 40px;}
-    .grid-shot{border-radius:18px;}
+    .grid-shot{border-radius:16px;}
   }
   @media(max-width:520px){
     .work-grid{grid-template-columns:1fr;gap:22px;}
@@ -226,7 +233,7 @@
   .story-frame:hover img{
     transform:scale(1.03);
   }
-  .story-frame:hover{box-shadow:var(--shadow-frame-hover);transform:translateY(-4px);}
+  .story-frame:hover{box-shadow:var(--shadow-frame-hover);transform:translateY(-6px);}
   @media(hover:none){
     .grid-shot.in-view:hover img,.story-frame:hover img{transform:scale(1);}
     .grid-shot.in-view:hover,.story-frame:hover{transform:none;}
@@ -253,7 +260,7 @@
     aspect-ratio:4/5;
     background:#F1EFEB;
     overflow:hidden;
-    border-radius:30px;
+    border-radius:22px;
     box-shadow:var(--shadow-frame);
     transition:box-shadow .6s var(--ease-premium), transform .6s var(--ease-premium);
   }
@@ -264,7 +271,7 @@
     display:block;
   }
   @media(max-width:1000px){
-    .story-frame{border-radius:20px;}
+    .story-frame{border-radius:16px;}
   }
   .story-text{flex:1 1 0;min-width:0;}
   .story-tag{
@@ -273,10 +280,10 @@
     margin-bottom:16px;
   }
   .story-text h2{
-    font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;
-    letter-spacing:-0.015em;line-height:1.08;
-    font-size:clamp(1.7rem,3.4vw,2.6rem);
-    margin-bottom:24px;
+    font-family:'Inter',sans-serif;font-weight:700;text-transform:none;
+    letter-spacing:-0.025em;line-height:1.12;
+    font-size:clamp(1.7rem,3.2vw,2.5rem);
+    margin-bottom:22px;
     max-width:420px;
   }
   .story-text p{
@@ -297,6 +304,97 @@
     .story-text h2,.story-text p,.story-meta{max-width:100%;}
   }
 
+  /* ---------- STORY EXPAND (Apple-style height + fade reveal) ---------- */
+  .story-toggle{
+    display:inline-flex;align-items:center;gap:9px;
+    background:none;border:none;cursor:pointer;padding:0;
+    margin-top:24px;
+    font-family:'Archivo',sans-serif;font-weight:700;
+    font-size:0.78rem;letter-spacing:0.06em;text-transform:uppercase;
+    color:var(--ink);
+    transition:color .4s var(--ease-premium),gap .4s var(--ease-premium);
+  }
+  .story-toggle:hover{color:var(--red);gap:13px;}
+  .story-toggle .arrow{font-size:0.95em;transition:transform .5s var(--ease-premium);}
+  .story-toggle[aria-expanded="true"] .arrow{transform:rotate(90deg);}
+  .story-expand-wrap{
+    display:grid;grid-template-rows:0fr;
+    transition:grid-template-rows .7s var(--ease-premium);
+    max-width:440px;
+  }
+  .story-expand-wrap.open{grid-template-rows:1fr;}
+  .story-expand-inner{overflow:hidden;min-height:0;}
+  .story-expand{
+    display:flex;flex-direction:column;gap:22px;
+    margin:28px 0 4px;padding-top:28px;
+    border-top:1px solid var(--line-on-white);
+    opacity:0;transform:translateY(-8px);
+    transition:opacity .5s var(--ease-premium) .08s,transform .5s var(--ease-premium) .08s;
+  }
+  .story-expand-wrap.open .story-expand{opacity:1;transform:translateY(0);}
+  .story-expand dt{
+    font-family:'Archivo',sans-serif;font-weight:700;color:var(--red);
+    font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:7px;
+  }
+  .story-expand dd{font-size:0.96rem;line-height:1.72;color:rgba(19,17,19,0.66);}
+  @media(max-width:1000px){
+    .story-expand-wrap{max-width:100%;}
+  }
+
+  /* ---------- EDITORIAL INTERLUDE (full-width copy sections between the grid) ---------- */
+  .interlude{
+    grid-column:1 / -1;
+    padding:clamp(56px,7vh,96px) 0;
+    border-top:1px solid var(--line-on-white);
+    border-bottom:1px solid var(--line-on-white);
+    opacity:0;transform:translateY(22px);
+    transition:opacity .8s var(--ease-soft),transform .8s var(--ease-soft);
+  }
+  .interlude.in-view{opacity:1;transform:translateY(0);}
+  .interlude .kicker{
+    display:flex;align-items:center;gap:9px;
+    font-family:'Archivo',sans-serif;font-weight:700;color:var(--red);
+    font-size:0.76rem;letter-spacing:0.16em;text-transform:uppercase;
+    margin-bottom:22px;
+  }
+  .interlude .kicker::before{content:"";width:8px;height:8px;background:var(--red);flex-shrink:0;}
+  .interlude h2{
+    font-family:'Inter',sans-serif;font-weight:700;text-transform:none;
+    letter-spacing:-0.025em;line-height:1.15;
+    font-size:clamp(1.7rem,3.4vw,2.6rem);
+    max-width:26ch;margin-bottom:24px;
+  }
+  .interlude p{
+    font-size:1.02rem;line-height:1.78;color:rgba(19,17,19,0.66);
+    max-width:62ch;
+  }
+  .interlude p + p{margin-top:18px;}
+  .interlude p strong{color:var(--ink);font-weight:600;}
+  @media(max-width:900px){
+    .interlude{padding:44px 0;}
+  }
+
+  /* ---------- PULL QUOTE (recurring "People Before Pixels" device) ---------- */
+  .pull-device{
+    grid-column:1 / -1;
+    padding:clamp(40px,5vh,64px) 0;
+    display:flex;align-items:baseline;gap:18px;
+    opacity:0;transform:translateY(16px);
+    transition:opacity .8s var(--ease-soft),transform .8s var(--ease-soft);
+  }
+  .pull-device.in-view{opacity:1;transform:translateY(0);}
+  .pull-device .mark{
+    font-family:'Bebas Neue',sans-serif;color:var(--red);
+    font-size:clamp(1.3rem,2.4vw,1.7rem);letter-spacing:0.02em;flex-shrink:0;
+  }
+  .pull-device p{
+    font-size:0.98rem;line-height:1.6;color:var(--muted-on-white);
+    max-width:52ch;
+  }
+  @media(max-width:700px){
+    .pull-device{flex-direction:column;gap:8px;}
+  }
+
   /* ---------- CLOSE / CONTACT ---------- */
   .close-cta{
     background:var(--red);color:var(--white);
@@ -310,9 +408,10 @@
   }
   .close-cta .tag::before{content:"";width:8px;height:8px;background:var(--white);}
   .close-cta h2{
-    font-family:'Archivo',sans-serif;font-weight:800;text-transform:uppercase;
-    letter-spacing:-0.015em;line-height:1.06;
-    font-size:clamp(2rem,5vw,3.4rem);margin-bottom:28px;
+    font-family:'Inter',sans-serif;font-weight:700;text-transform:none;
+    letter-spacing:-0.03em;line-height:1.1;
+    font-size:clamp(2rem,4.6vw,3.2rem);margin-bottom:26px;
+    max-width:16ch;
   }
   .close-cta p{font-size:1.04rem;line-height:1.72;color:var(--muted-on-red);max-width:560px;margin-bottom:38px;}
   .close-cta .cta{background:var(--white);color:var(--red-deep);}
@@ -333,7 +432,9 @@
   @media(max-width:900px){.close-cta{padding:84px 20px 60px;}}
 
   @media(prefers-reduced-motion:reduce){
-    .story,.grid-shot{opacity:1;transform:none;transition:none;}
+    .story,.grid-shot,.interlude,.pull-device{opacity:1;transform:none;transition:none;}
+    .story-expand-wrap{transition:none;}
+    .story-expand{transition:none;}
   }
 </style>
 </head>
@@ -359,11 +460,18 @@
 
   <section class="masthead">
     <div class="kicker">Work</div>
-    <h1>Selected work. Built with intention.</h1>
-    <p class="note">Every project starts with a business problem—not a design brief. From hospitality and luxury retail to startups and global brands, this is a curated selection of work designed to create stronger first impressions and lasting brand value.</p>
+    <h1>Work that solved problems before it created visuals.</h1>
+    <p class="note">Every image below started with a conversation—not a canvas. Some projects needed to build trust. Some needed to launch faster. Others needed to help established brands stay consistent at scale. The outcome is design. The work was always communication.</p>
   </section>
 
   <section class="work-grid">
+
+    <div class="interlude">
+      <div class="kicker">Before the first project</div>
+      <h2>Behind every image is a conversation.</h2>
+      <p>The portfolio you're about to explore isn't arranged by industry or service. It's arranged by the problems we solved. Because the final visual is only the visible part of the work.</p>
+      <p><strong>The strategy, the conversations and the difficult decisions rarely make it into a mockup</strong>—but they're what clients remember.</p>
+    </div>
 
     <div class="grid-shot"><img src="assets/aeroengines-america-booth.webp" alt="Aeroengines America exhibition booth" loading="eager" fetchpriority="high" decoding="async"></div>
     <div class="grid-shot"><img src="assets/aiolec-brochure-laptop.webp" alt="Aiolec London brochure design" loading="eager" fetchpriority="high" decoding="async"></div>
@@ -376,8 +484,20 @@
       <div class="story-text">
         <div class="story-tag">Government · Dubai</div>
         <h2>Dubai Media Office</h2>
-        <p><strong>Built for clarity at scale.</strong> Supporting national announcements means every visual must communicate instantly across languages, platforms and audiences. We developed bilingual campaign assets and event graphics that remained consistent under demanding timelines while respecting an established government identity.</p>
+        <p><strong>Designing for millions means designing responsibly.</strong> When communication represents a government institution, clarity becomes more important than creativity.</p>
         <div class="story-meta">Social Content · Stage Branding · Design Collaterals</div>
+        <button class="story-toggle" aria-expanded="false"><span class="label">Read the full story</span><span class="arrow">→</span></button>
+        <div class="story-expand-wrap">
+          <div class="story-expand-inner">
+            <dl class="story-expand">
+              <div><dt>The Challenge</dt><dd>Every announcement, campaign and event asset needed to communicate instantly across different languages, audiences and platforms—while staying consistent with an identity that was already established, not ours to reinvent.</dd></div>
+              <div><dt>The Thinking</dt><dd>The temptation with public-sector work is to make it interesting. We resisted that. The real work was asking what a viewer needed to understand in the two seconds they'd actually give it.</dd></div>
+              <div><dt>The Solution</dt><dd>Bilingual campaign systems, stage branding and social templates built around a strict hierarchy—one idea per frame, repeated until it felt familiar rather than novel.</dd></div>
+              <div><dt>The Outcome</dt><dd>Materials that held together across dozens of touchpoints and multiple teams, without a single style guide meeting.</dd></div>
+              <div><dt>What I Learned</dt><dd>Good public communication isn't remembered because it's beautiful. It's remembered because people never had to think twice.</dd></div>
+            </dl>
+          </div>
+        </div>
       </div>
     </article>
 
@@ -392,8 +512,20 @@
       <div class="story-text">
         <div class="story-tag">Hospitality</div>
         <h2>Marriott Indore</h2>
-        <p><strong>Premium shouldn't stop at the dining table.</strong> During Covid, takeaway became part of the guest experience. We designed festive packaging, campaign assets and guest collateral that extended Marriott's premium identity beyond the hotel itself.</p>
+        <p><strong>Hospitality doesn't end at the hotel entrance.</strong> During the pandemic, the guest experience had to travel home with them.</p>
         <div class="story-meta">Packaging · Campaign Design · Guest Collateral</div>
+        <button class="story-toggle" aria-expanded="false"><span class="label">Read the full story</span><span class="arrow">→</span></button>
+        <div class="story-expand-wrap">
+          <div class="story-expand-inner">
+            <dl class="story-expand">
+              <div><dt>The Challenge</dt><dd>Luxury hotels needed to deliver the same level of care through takeaway packaging, festive hampers and communication that guests would normally only experience inside the property.</dd></div>
+              <div><dt>The Thinking</dt><dd>The challenge wasn't designing packaging. It was preserving the feeling of Marriott outside the hotel—a much harder brief than it sounds.</dd></div>
+              <div><dt>The Solution</dt><dd>Every detail, from materials to typography, was considered so the experience remained recognisably Marriott the moment it left the building.</dd></div>
+              <div><dt>The Outcome</dt><dd>Packaging and collateral that guests associated with the same quality as the in-hotel experience, delivered through a fraction of the usual touchpoints.</dd></div>
+              <div><dt>What I Learned</dt><dd>Premium brands don't become memorable because they look expensive. They become memorable because every touchpoint feels intentional.</dd></div>
+            </dl>
+          </div>
+        </div>
       </div>
     </article>
 
@@ -408,8 +540,20 @@
       <div class="story-text">
         <div class="story-tag">Luxury Retail</div>
         <h2>Valdaria</h2>
-        <p>A premium suiting brand built from scratch, including its trade exhibition booth, fabric presentation and event graphics.</p>
+        <p><strong>Building a brand before building awareness.</strong> Valdaria wasn't looking for another logo. It needed an identity that could stand beside established luxury suiting brands.</p>
         <div class="story-meta">Brand Identity · Exhibition Design · Event Graphics</div>
+        <button class="story-toggle" aria-expanded="false"><span class="label">Read the full story</span><span class="arrow">→</span></button>
+        <div class="story-expand-wrap">
+          <div class="story-expand-inner">
+            <dl class="story-expand">
+              <div><dt>The Challenge</dt><dd>A brand with no market awareness, entering a category where competitors had decades of trust already built in.</dd></div>
+              <div><dt>The Thinking</dt><dd>Building a brand before building awareness meant every asset had to do the work a reputation usually does.</dd></div>
+              <div><dt>The Solution</dt><dd>The work extended far beyond visual identity—exhibition spaces, printed material and fabric presentation, all designed to create confidence before the first conversation began.</dd></div>
+              <div><dt>The Outcome</dt><dd>A presence that read as established from day one, in a category that punishes anything that looks new.</dd></div>
+              <div><dt>What I Learned</dt><dd>Luxury isn't decoration. Luxury is restraint.</dd></div>
+            </dl>
+          </div>
+        </div>
       </div>
     </article>
 
@@ -424,8 +568,20 @@
       <div class="story-text">
         <div class="story-tag">Luxury Retail</div>
         <h2>Manek</h2>
-        <p>Full identity for a premium shirting brand, from packaging and sales collateral through to event branding.</p>
+        <p><strong>Trust begins before the fabric is touched.</strong> When customers invest in premium shirting, their first impression often happens long before they experience the product itself.</p>
         <div class="story-meta">Brand Identity · Packaging · Sales Collateral</div>
+        <button class="story-toggle" aria-expanded="false"><span class="label">Read the full story</span><span class="arrow">→</span></button>
+        <div class="story-expand-wrap">
+          <div class="story-expand-inner">
+            <dl class="story-expand">
+              <div><dt>The Challenge</dt><dd>Trust needed to begin before the product was in anyone's hands—through packaging, catalogues and sales collateral alone.</dd></div>
+              <div><dt>The Thinking</dt><dd>Branding doesn't begin with the product. It begins with expectation. We designed for the moment before the sale, not the moment of it.</dd></div>
+              <div><dt>The Solution</dt><dd>Packaging, catalogues, sales collateral and exhibition material became part of one continuous experience, rather than separate deliverables handled in isolation.</dd></div>
+              <div><dt>The Outcome</dt><dd>A retail presence that carried the same confidence at every stage, from shelf to store to sale.</dd></div>
+              <div><dt>What I Learned</dt><dd>The first impression is rarely the product itself. It's everything that surrounds it.</dd></div>
+            </dl>
+          </div>
+        </div>
       </div>
     </article>
 
@@ -436,18 +592,42 @@
       <div class="story-text">
         <div class="story-tag">Packaging</div>
         <h2>Indian Kawfee Co.</h2>
-        <p>Premium coffee identity and packaging with visual storytelling drawn from Indian coffee culture.</p>
+        <p><strong>Packaging should tell a story before the first sip.</strong> Coffee isn't only judged by taste. It's judged on the shelf, in the seconds before anyone tastes anything.</p>
         <div class="story-meta">Brand Identity · Packaging Design</div>
+        <button class="story-toggle" aria-expanded="false"><span class="label">Read the full story</span><span class="arrow">→</span></button>
+        <div class="story-expand-wrap">
+          <div class="story-expand-inner">
+            <dl class="story-expand">
+              <div><dt>The Challenge</dt><dd>Celebrate Indian coffee culture without leaning on the clichés the category usually reaches for.</dd></div>
+              <div><dt>The Thinking</dt><dd>The objective wasn't louder packaging. It was packaging people wanted to pick up—a quieter, harder goal to design for.</dd></div>
+              <div><dt>The Solution</dt><dd>Every visual decision balanced authenticity with contemporary retail appeal, so the identity felt rooted without feeling dated.</dd></div>
+              <div><dt>The Outcome</dt><dd>Packaging that stood out on shelf without shouting, and that customers described as feeling authentically Indian.</dd></div>
+              <div><dt>What I Learned</dt><dd>Story sells before flavour does. Give people something to believe before they taste anything.</dd></div>
+            </dl>
+          </div>
+        </div>
       </div>
     </article>
+
+    <div class="interlude">
+      <div class="kicker">What Changed</div>
+      <h2>What these projects taught me.</h2>
+      <p>Every project leaves something behind. Marriott reinforced the importance of consistency. Government work reminded me that clarity always beats decoration. Retail brands proved that first impressions often decide the sale.</p>
+      <p><strong>Those lessons quietly shape every project that follows.</strong></p>
+    </div>
+
+    <div class="pull-device">
+      <div class="mark">People Before Pixels.</div>
+      <p>Design is visible. Thinking isn't. Clients rarely remember a layout or a colour palette—they remember how clearly their message was understood.</p>
+    </div>
 
   </section>
 
   <section class="close-cta">
     <div class="inner">
       <div class="tag">Start</div>
-      <h2>Bring us the brief. We'll bring the direction</h2>
-      <p>No forms that disappear into an inbox. Message directly and hear back from the people actually doing the work.</p>
+      <h2>You're probably looking for more than another designer</h2>
+      <p>If you've made it this far, you're looking for someone who can think with you, challenge assumptions and care about the details as much as the outcome. No sales call, no long proposal—just an honest discussion about where your brand is today, and where it could go next.</p>
       <a href="http://wa.me/919981947010" target="_blank" class="cta"><span class="ico">⊟</span>Work With Us</a>
       <div class="site-footer">
         <a href="https://instagram.com/beyondbranding.media" target="_blank">Instagram</a>
@@ -549,6 +729,31 @@
   shots.forEach((s,i)=>{
     s.style.transitionDelay = (i%3)*90 + 'ms'; // stagger by column position within each row
     shotIo.observe(s);
+  });
+
+  // Scroll reveal for editorial interludes and the recurring pull-quote device
+  const editorialBits = document.querySelectorAll('.interlude, .pull-device');
+  const editIo = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+        editIo.unobserve(e.target);
+      }
+    });
+  },{threshold:0.12, rootMargin:'800px 0px'});
+  editorialBits.forEach(el=>editIo.observe(el));
+
+  // Expandable "Read the full story" panels — Apple-style height + fade reveal,
+  // driven by CSS grid-template-rows (0fr → 1fr) rather than a JS-measured height,
+  // so it stays smooth regardless of content length or viewport resize.
+  document.querySelectorAll('.story-toggle').forEach(btn=>{
+    const wrap = btn.nextElementSibling;
+    if(!wrap || !wrap.classList.contains('story-expand-wrap')) return;
+    btn.addEventListener('click', ()=>{
+      const isOpen = wrap.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(isOpen));
+      btn.querySelector('.label').textContent = isOpen ? 'Close the story' : 'Read the full story';
+    });
   });
 
   // Top scroll progress bar
