@@ -9,6 +9,14 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 sys.path.insert(0, HERE)
 from projects import PROJECTS, FILTERS, PACKAGES, WHATSAPP, SITE  # noqa: E402
+from showcases import UPDATES, NEW  # noqa: E402
+for _p in PROJECTS:
+    _p.update(UPDATES.get(_p["slug"], {}))
+PROJECTS.extend(NEW)
+LEAD_ORDER = ["soul-av", "esperti", "aiolec", "dubai-media-office", "sd-med-solutions", "market-lens", "marriott-indore",
+              "tara-and-tot", "overcmr", "pihoco"]
+_pos = {p["slug"]: i for i, p in enumerate(PROJECTS)}
+PROJECTS.sort(key=lambda p: LEAD_ORDER.index(p["slug"]) if p["slug"] in LEAD_ORDER else 100 + _pos[p["slug"]])
 
 E = lambda s: html.escape(s, quote=True)
 FILTER_NAME = dict(FILTERS)
@@ -190,6 +198,7 @@ def header(prefix, back_href, back_label):
     return f"""<header class="top">
   <a href="{prefix}index.html" class="logo">BEYOND<em>BRANDING</em></a>
   <nav>
+    <a href="{prefix}websites.html" class="pill hide-sm">Websites</a>
     <a href="{prefix}packages-global/index.html" class="pill hide-sm">Pricing</a>
     <a href="{back_href}" class="pill">← {back_label}</a>
     <a href="{wa('Hi Ayush, I found you through your portfolio and would like to discuss a project.')}" target="_blank" rel="noopener" class="pill red">WhatsApp</a>
@@ -538,6 +547,9 @@ def build_case(p, idx):
           "creator": {"@type": "Organization", "name": "Beyond Branding", "url": SITE}, "about": p["industry"]}
 
     location = p.get("location") or "—"
+    live = f'<a href="{p["url"]}" target="_blank" rel="noopener" class="cta ghost">Visit live site ↗</a>' if p.get("url") else ""
+    if p.get("demo"):
+        live += f'<a href="{pre}{p["demo"]}" target="_blank" rel="noopener" class="cta ghost">Explore the live build ↗</a>' 
     rows = "".join(
         f'<div class="srow rv{" learn" if lbl == "What I Learned" else ""}"><h2>{E(lbl)}</h2><p>{E(txt)}</p></div>'
         for lbl, txt in p["story"])
@@ -564,11 +576,11 @@ def build_case(p, idx):
     <dl class="facts">
       <div><dt>Services</dt><dd>{E(p['services'])}</dd></div>
       <div><dt>Industry</dt><dd>{E(p['industry'])}</dd></div>
-      <div><dt>Location</dt><dd>{E(location)}</dd></div>
+      {('<div><dt>Location</dt><dd>' + E(location) + '</dd></div>') if p.get("location") else ''}
     </dl>
     <div class="actions">
       <a href="{wa(msg)}" target="_blank" rel="noopener" class="cta">⊟ Get something similar</a>
-      <a href="#pricing" class="cta ghost">What it costs</a>
+      {live}<a href="#pricing" class="cta ghost">What it costs</a>
     </div>
   </div>
   <div class="media"><div class="frame"><img src="{pre}assets/{cover}" alt="{E(cover_alt)}" loading="eager" fetchpriority="high" decoding="async"></div></div>
@@ -606,24 +618,53 @@ def build_case(p, idx):
 
 
 def build_sitemap():
-    urls = ["", "portfolio.html", "packages-global/"] + [f"work/{p['slug']}.html" for p in PROJECTS]
+    urls = ["", "portfolio.html", "websites.html", "packages-global/", "packages-india/"] + [f"work/{p['slug']}.html" for p in PROJECTS]
     body = "".join(f"  <url><loc>{SITE}/{u}</loc></url>\n" for u in urls)
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{body}</urlset>\n'
+
+
+PENDING = []
 
 
 def main():
     slugs = [p["slug"] for p in PROJECTS]
     assert len(slugs) == len(set(slugs)), "duplicate slug"
+    waiting = []
     for p in PROJECTS:
         for k in p["filters"]: assert k in FILTER_NAME, (p["slug"], k)
         for k in p["packages"]: assert k in PACKAGES, (p["slug"], k)
-        for im, _ in p["images"]: assert os.path.exists(os.path.join(ROOT, "assets", im)), im
+        # keep only images that exist; a project without its cover image stays hidden
+        have = [(im, a) for im, a in p["images"] if os.path.exists(os.path.join(ROOT, "assets", im))]
+        if not have or have[0][0] != p["images"][0][0]:
+            waiting.append((p["client"], [im for im, _ in p["images"]]))
+            p["_skip"] = True
+        p["images"] = have or p["images"]
+    # live sites without screenshots yet stay on the homepage/websites page as a labelled preview
+    global PENDING
+    PENDING = [p for p in PROJECTS if p.get("_skip") and p.get("url")]
+    for p in PENDING: p["_pending"] = True
+    PROJECTS[:] = [p for p in PROJECTS if not p.get("_skip")]
+    for name, ims in waiting:
+        print(f"  waiting for images: {name}  ->  assets/{', assets/'.join(ims)}")
+    slugs = [p["slug"] for p in PROJECTS]
     os.makedirs(os.path.join(ROOT, "work"), exist_ok=True)
     for f in os.listdir(os.path.join(ROOT, "work")):
         if f.endswith(".html") and f[:-5] not in slugs: os.remove(os.path.join(ROOT, "work", f))
-    with open(os.path.join(ROOT, "portfolio.html"), "w") as f: f.write(build_hub())
+    import pages
+    with open(os.path.join(ROOT, "portfolio.html"), "w") as f: f.write(pages.build_work(PROJECTS, SITE, FILTERS))
     for i, p in enumerate(PROJECTS):
-        with open(os.path.join(ROOT, "work", p["slug"] + ".html"), "w") as f: f.write(build_case(p, i))
+        if p.get("showcase"):
+            from showcase_case import build_showcase_case
+            html_out = build_showcase_case(p, PROJECTS[(i + 1) % len(PROJECTS)], SITE, PACKAGES)
+        else:
+            html_out = pages.build_case2(p, PROJECTS[(i + 1) % len(PROJECTS)], related_for(p), SITE, PACKAGES)
+        with open(os.path.join(ROOT, "work", p["slug"] + ".html"), "w") as f: f.write(html_out)
+    import apple
+    allp = PROJECTS + PENDING
+    with open(os.path.join(ROOT, "index.html"), "w") as f: f.write(apple.build_home(allp, SITE))
+    with open(os.path.join(ROOT, "websites.html"), "w") as f: f.write(apple.build_websites(allp, SITE, PACKAGES))
+    with open(os.path.join(ROOT, "packages-global", "index.html"), "w") as f: f.write(pages.build_pricing(SITE))
+    with open(os.path.join(ROOT, "packages-india", "index.html"), "w") as f: f.write(pages.build_pricing(SITE, inr=True))
     with open(os.path.join(ROOT, "sitemap.xml"), "w") as f: f.write(build_sitemap())
     with open(os.path.join(ROOT, "robots.txt"), "w") as f: f.write(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
     print(f"built portfolio.html + {len(PROJECTS)} case pages")

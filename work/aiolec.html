@@ -3,311 +3,216 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Aiolec — Brochure Design Case Study · Beyond Branding</title>
-<meta name="description" content="A brochure that sells before the meeting starts. Brochure design for Aiolec in London, built to explain the offer clearly and look as premium as the product. Brochure Design · Sales Collateral by Beyond Branding.">
+<title>Aiolec — Website Case Study · Beyond Branding</title>
+<meta name="description" content="A display catalogue with the restraint of a product launch. How Beyond Branding designed and built the Aiolec website.">
 <link rel="canonical" href="https://beyondbranding.media/work/aiolec.html">
-<meta property="og:title" content="Aiolec — Brochure Design Case Study · Beyond Branding">
-<meta property="og:description" content="A brochure that sells before the meeting starts. Brochure design for Aiolec in London, built to explain the offer clearly and look as premium as the product. Brochure Design · Sales Collateral by Beyond Branding.">
-<meta property="og:image" content="https://beyondbranding.media/assets/aiolec-brochure-laptop.webp">
-<meta property="og:url" content="https://beyondbranding.media/work/aiolec.html">
-<meta property="og:type" content="website">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#FAF9F7">
+<meta property="og:title" content="Aiolec — Website Case Study · Beyond Branding"><meta property="og:description" content="A display catalogue with the restraint of a product launch. How Beyond Branding designed and built the Aiolec website.">
+<meta property="og:image" content="https://beyondbranding.media/assets/sc/aiolec/hero.webp"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0D12">
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add('js')</script>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Aiolec — Brochure Design · Sales Collateral", "url": "https://beyondbranding.media/work/aiolec.html", "image": "https://beyondbranding.media/assets/aiolec-brochure-laptop.webp", "description": "A brochure that sells before the meeting starts. Brochure design for Aiolec in London, built to explain the offer clearly and look as premium as the product.", "creator": {"@type": "Organization", "name": "Beyond Branding", "url": "https://beyondbranding.media"}, "about": "Technology"}</script>
-<style>
-:root{
-  --white:#FAF9F7;--ink:#131113;--red:#D91C2B;--red-deep:#A8121E;
-  --muted:#6B6864;--muted-on-red:rgba(250,249,247,0.74);
-  --line:rgba(19,17,19,0.12);--line-on-red:rgba(250,249,247,0.24);--line-on-ink:rgba(250,249,247,0.14);
-  --ease:cubic-bezier(.22,1,.36,1);--ease-soft:cubic-bezier(.16,1,.3,1);--ease-premium:cubic-bezier(.19,1,.22,1);
-  --gutter:clamp(20px,6vw,72px);
-}
-*{margin:0;padding:0;box-sizing:border-box;}
-html.lenis{height:auto;}.lenis.lenis-smooth{scroll-behavior:auto;}
-body{background:var(--white);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-::selection{background:var(--red);color:var(--white);}
-img{max-width:100%;display:block;}
-a{color:inherit;}
-#grain{position:fixed;inset:0;z-index:900;pointer-events:none;opacity:0.09;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
-#wipe{position:fixed;inset:0;z-index:2000;background:var(--red);transform:scaleY(0);transform-origin:bottom;pointer-events:none;transition:transform .55s cubic-bezier(.76,0,.24,1);}
-#wipe.cover{transform:scaleY(1);}
-#topProgress{position:fixed;top:0;left:0;height:2px;background:var(--red);width:0%;z-index:400;}
+<style>:root{--bg:#0B0D12;--bg2:#121520;--fg:#F5F6F7;--muted:#86868B;--accent:#5075FF;--line:rgba(255,255,255,.12)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+::selection{background:var(--accent);color:var(--bg)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.w{max-width:1440px;margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left),4vw)}
 
-header.top{position:fixed;top:0;left:0;right:0;z-index:300;height:calc(48px + env(safe-area-inset-top));padding:env(safe-area-inset-top) 22px 0;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  background:rgba(250,249,247,0.82);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
-  border-bottom:1px solid rgba(19,17,19,0.08);}
-header.top .logo{font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(0.92rem,3.6vw,1.15rem);letter-spacing:0.02em;text-decoration:none;white-space:nowrap;}
-header.top .logo em{color:var(--red);font-style:normal;}
-header.top nav{display:flex;align-items:center;gap:8px;}
-.pill{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 15px;border-radius:100px;
-  font-family:'Inter',sans-serif;font-weight:500;font-size:12.5px;letter-spacing:-0.01em;text-decoration:none;white-space:nowrap;
-  background:rgba(19,17,19,0.05);border:1px solid rgba(19,17,19,0.08);
-  transition:background .35s var(--ease-premium),color .35s var(--ease-premium),border-color .35s var(--ease-premium);}
-.pill:hover{background:var(--ink);color:var(--white);border-color:var(--ink);}
-.pill.red{background:var(--red);border-color:var(--red);color:var(--white);}
-.pill.red:hover{background:var(--ink);border-color:var(--ink);}
-@media(max-width:560px){header.top{padding-left:16px;padding-right:16px;}.pill.hide-sm{display:none;}.pill{padding:0 12px;}}
+/* bar */
+.bar{position:fixed;inset:0 0 auto;z-index:50;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:calc(14px + env(safe-area-inset-top)) max(20px,4vw) 14px;mix-blend-mode:difference;color:#fff}
+.bar .logo{font-family:'Archivo',sans-serif;font-weight:800;font-size:1rem;letter-spacing:.02em;text-decoration:none}
+.bar nav{display:flex;gap:22px;font-family:'Archivo',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
+.bar nav a{text-decoration:none;opacity:.85}.bar nav a:hover{opacity:1}
+.bar .logo,.bar nav a{white-space:nowrap}
+@media(max-width:600px){.bar nav a.hide{display:none}.bar nav{gap:14px;font-size:.62rem}.bar .logo{font-size:.86rem}}
 
-.cta{display:inline-flex;align-items:center;gap:10px;padding:16px 28px;border-radius:100px;
-  font-family:'Archivo',sans-serif;font-weight:700;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;
-  color:var(--white);background:var(--ink);border:1px solid var(--ink);
-  transition:transform .5s var(--ease-premium),background .4s var(--ease-premium),box-shadow .5s var(--ease-premium),color .4s,border-color .4s;}
-.cta:hover{background:var(--red);border-color:var(--red);box-shadow:0 14px 36px rgba(217,28,43,0.28);transform:translateY(-2px);}
-.cta.ghost{background:transparent;color:var(--ink);border-color:rgba(19,17,19,0.22);}
-.cta.ghost:hover{background:var(--ink);color:var(--white);border-color:var(--ink);box-shadow:none;}
-.cta.light{background:var(--white);color:var(--red-deep);border-color:var(--white);}
-.cta.light:hover{background:var(--ink);color:var(--white);border-color:var(--ink);}
-.cta.outline-light{background:transparent;color:var(--white);border-color:rgba(250,249,247,0.4);}
-.cta.outline-light:hover{background:var(--white);color:var(--ink);border-color:var(--white);box-shadow:none;}
-.actions{display:flex;flex-wrap:wrap;gap:12px;}
-@media(max-width:480px){.actions .cta{width:100%;justify-content:center;}}
+/* hero */
+.hero{padding-top:calc(130px + env(safe-area-inset-top))}
+.kick{font-family:'Archivo',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);display:flex;gap:14px;flex-wrap:wrap}
+.hero h1{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(4rem,16vw,15rem);line-height:.82;letter-spacing:-.04em;margin:22px 0 28px;text-transform:uppercase}
+.hero h1 span{display:inline-block;transform:translateY(40%);opacity:0;animation:up 1.1s cubic-bezier(.19,1,.22,1) forwards}
+@keyframes up{to{transform:none;opacity:1}}
+.tag{font-size:clamp(1.2rem,2.4vw,2rem);line-height:1.25;letter-spacing:-.015em;max-width:30ch;font-weight:500}
+.meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:clamp(40px,6vw,80px);padding:22px 0;border-block:1px solid var(--line)}
+.meta dt{font-family:'Archivo',sans-serif;font-weight:700;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.meta dd{font-size:.95rem;line-height:1.45}
+.meta a{text-decoration:none;border-bottom:1px solid var(--accent)}
+@media(max-width:800px){.meta{grid-template-columns:1fr 1fr}}
 
-.kicker{display:flex;align-items:center;gap:9px;font-family:'Archivo',sans-serif;font-weight:700;color:var(--red);
-  font-size:0.76rem;letter-spacing:0.16em;text-transform:uppercase;}
-.kicker::before{content:"";width:8px;height:8px;background:currentColor;flex-shrink:0;}
+.frame{border-radius:14px;overflow:hidden;background:var(--bg2);box-shadow:0 40px 90px -30px rgba(0,0,0,.55)}
+.frame .chrome{height:30px;display:flex;align-items:center;gap:6px;padding:0 14px;background:var(--bg2);border-bottom:1px solid var(--line)}
+.frame .chrome i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.frame .chrome u{margin:0 auto;text-decoration:none;font-size:.7rem;color:var(--muted);letter-spacing:.02em}
+.frame img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.hero-shot{margin-top:clamp(40px,6vw,80px);will-change:transform}
 
-.frame{position:relative;overflow:hidden;background:#EFEDE9;border-radius:20px;}
-.frame img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s var(--ease-soft),transform .9s var(--ease);}
-.frame.loaded img{opacity:1;}
-@media(max-width:900px){.frame{border-radius:16px;}}
+/* intro */
+.intro{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px clamp(40px,7vw,120px);padding-block:clamp(90px,12vw,180px)}
+.intro h2{font-size:clamp(1.8rem,3.6vw,3.2rem);line-height:1.12;letter-spacing:-.025em;font-weight:600}
+.intro h2 em{font-style:normal;color:var(--accent)}
+.intro p{font-size:1.05rem;line-height:1.75;color:var(--muted)}
+.intro p+p{margin-top:18px}
+.intro .lbl{font-family:'Archivo',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+@media(max-width:860px){.intro{grid-template-columns:1fr}}
 
-/* project cards (hub grid + related) */
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3vw,44px) clamp(18px,2.4vw,36px);}
-.card{display:block;text-decoration:none;color:var(--ink);}
-.card .frame{aspect-ratio:4/5;transition:box-shadow .6s var(--ease-premium),transform .6s var(--ease-premium);}
-.card .frame::after{content:"Case study \2192";position:absolute;left:14px;bottom:14px;z-index:2;
-  font-family:'Archivo',sans-serif;font-weight:700;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;
-  background:var(--white);color:var(--ink);padding:9px 13px;border-radius:100px;
-  opacity:0;transform:translateY(8px);transition:opacity .45s var(--ease-premium),transform .45s var(--ease-premium);}
-.card:hover .frame{transform:translateY(-6px);box-shadow:0 24px 48px -20px rgba(19,17,19,0.22);}
-.card:hover .frame img{transform:scale(1.03);}
-.card:hover .frame::after{opacity:1;transform:none;}
-.card .c-tag{margin-top:18px;font-family:'Archivo',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--red);}
-.card h3{margin-top:8px;font-weight:700;font-size:1.28rem;letter-spacing:-0.02em;line-height:1.2;}
-.card p{margin-top:8px;font-size:0.95rem;line-height:1.6;color:rgba(19,17,19,0.66);max-width:40ch;}
-.card .c-svc{margin-top:12px;font-family:'Archivo',sans-serif;font-weight:600;font-size:0.7rem;letter-spacing:0.05em;color:var(--muted);}
-@media(hover:none){.card .frame::after{opacity:1;transform:none;}.card:hover .frame{transform:none;}}
-@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:560px){.cards{grid-template-columns:1fr;gap:40px;}}
+/* sections */
+.sect{padding-bottom:clamp(80px,10vw,150px)}
+.sect .row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,3fr);gap:24px clamp(30px,5vw,80px);align-items:start}
+.sect .row+.row{margin-top:clamp(70px,9vw,130px)}
+.sect .cap{position:sticky;top:110px}
+.sect .n{font-family:'Archivo',sans-serif;font-weight:800;font-size:.8rem;color:var(--accent);letter-spacing:.1em}
+.sect h3{font-size:clamp(1.3rem,2vw,1.7rem);font-weight:600;letter-spacing:-.02em;margin:12px 0 10px;line-height:1.2}
+.sect p{font-size:.98rem;line-height:1.7;color:var(--muted);max-width:34ch}
+.sect .row:nth-child(even){grid-template-columns:minmax(0,3fr) minmax(0,1fr)}
+.sect .row:nth-child(even) .cap{order:2}
+@media(max-width:860px){.sect .row,.sect .row:nth-child(even){grid-template-columns:1fr}.sect .row:nth-child(even) .cap{order:0}.sect .cap{position:static}}
 
-/* close / contact */
-.close-cta{background:var(--red);color:var(--white);padding:128px var(--gutter) calc(72px + env(safe-area-inset-bottom));}
-.close-cta .inner{max-width:760px;margin:0 auto;}
-.close-cta .kicker{color:var(--white);margin-bottom:26px;}
-.close-cta h2{font-weight:700;letter-spacing:-0.03em;line-height:1.1;font-size:clamp(2rem,4.6vw,3.2rem);margin-bottom:24px;max-width:18ch;}
-.close-cta p{font-size:1.04rem;line-height:1.72;color:var(--muted-on-red);max-width:560px;margin-bottom:36px;}
-.site-footer{margin-top:72px;padding-top:28px;border-top:1px solid var(--line-on-red);display:flex;flex-wrap:wrap;gap:10px 22px;
-  font-family:'Archivo',sans-serif;font-weight:600;font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;}
-.site-footer a{text-decoration:none;opacity:0.72;transition:opacity .4s;}
-.site-footer a:hover{opacity:1;}
-.site-footer .fs-copy{opacity:0.55;width:100%;margin-top:8px;font-weight:500;letter-spacing:0.02em;text-transform:none;}
-@media(max-width:900px){.close-cta{padding-top:84px;}}
+/* mobile */
+.mob{background:var(--accent);color:var(--bg);padding-block:clamp(90px,11vw,160px);overflow:hidden}
+.mob h2{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(2.4rem,7vw,6.4rem);line-height:.9;letter-spacing:-.03em;text-transform:uppercase;max-width:12ch}
+.mob p{font-size:1.05rem;line-height:1.65;max-width:40ch;margin-top:18px;opacity:.85}
+.phones{display:flex;justify-content:center;gap:clamp(14px,3vw,48px);margin-top:clamp(50px,7vw,90px)}
+.phone{width:clamp(150px,22vw,320px);border-radius:clamp(26px,3.6vw,48px);background:#0b0b0c;padding:clamp(7px,.9vw,12px);box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+.phone img{border-radius:clamp(20px,2.8vw,38px);aspect-ratio:390/844;object-fit:cover;width:100%}
+.phone:nth-child(2){transform:translateY(-8%)}
+@media(max-width:600px){.phone:nth-child(3){display:none}.phone{width:44vw}}
 
-/* reveal */
-.js .rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease-soft),transform .8s var(--ease-soft);}
-.js .rv.in{opacity:1;transform:none;}
-@media(prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none;}.frame img{transition:none;}}
+/* design system */
+.ds{padding-block:clamp(90px,12vw,170px)}
+.ds-h{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:44px}
+.ds-h h2{font-size:clamp(1.8rem,3.4vw,3rem);font-weight:600;letter-spacing:-.025em}
+.ds-h p{color:var(--muted);max-width:44ch;line-height:1.65}
+.sw{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.sw>div{border-radius:14px;padding:110px 16px 16px;border:1px solid var(--line);display:flex;flex-direction:column;gap:2px}
+.sw b{font-size:.9rem;font-weight:600}
+.sw code{font-family:ui-monospace,Menlo,monospace;font-size:.78rem;opacity:.75}
+.sw small{font-size:.74rem;opacity:.7;margin-top:6px}
+.ty{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:10px}
+.ty>div{border:1px solid var(--line);border-radius:14px;padding:26px}
+.ty .s{font-size:clamp(2.2rem,4vw,3.4rem);line-height:1.05;margin-bottom:18px;overflow-wrap:anywhere}
+.ty b{font-size:.92rem;font-weight:600;display:block}
+.ty small{color:var(--muted);font-size:.82rem}
 
-.c-hero{padding:calc(112px + env(safe-area-inset-top)) var(--gutter) 0;max-width:1440px;margin:0 auto;
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(36px,6vw,104px);align-items:center;}
-.crumb{font-size:0.82rem;color:var(--muted);margin-bottom:28px;}
-.crumb a{text-decoration:none;color:var(--ink);font-weight:500;}
-.crumb a:hover{color:var(--red);}
-.c-hero .kicker{margin-bottom:22px;}
-.c-hero h1{font-weight:700;letter-spacing:-0.035em;line-height:1.04;font-size:clamp(2.6rem,6vw,4.8rem);margin-bottom:24px;}
-.c-hero .lede{font-size:clamp(1.08rem,1.6vw,1.26rem);line-height:1.66;color:rgba(19,17,19,0.66);max-width:42ch;margin-bottom:34px;}
-.c-hero .lede strong{display:block;color:var(--ink);font-weight:600;margin-bottom:6px;}
-.facts{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:16px 40px;padding:22px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:32px;}
-.facts dt{font-family:'Archivo',sans-serif;font-weight:700;font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
-.facts dd{font-size:0.92rem;font-weight:500;line-height:1.45;}
-.c-hero .frame{aspect-ratio:4/5;border-radius:24px;}
-@media(max-width:900px){
-  .c-hero{grid-template-columns:1fr;padding-top:calc(88px + env(safe-area-inset-top));gap:36px;}
-  .c-hero .media{order:-1;} .crumb{margin-bottom:20px;}
-  .facts{grid-template-columns:1fr 1fr;gap:16px 24px;} .facts div:first-child{grid-column:1/-1;}
-}
+/* features */
+.ft{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.ft>div{background:var(--bg);padding:30px 26px 34px}
+.ft .n{font-family:'Archivo',sans-serif;font-weight:800;font-size:.76rem;color:var(--accent);letter-spacing:.1em}
+.ft h3{font-size:1.14rem;font-weight:600;letter-spacing:-.015em;margin:14px 0 8px}
+.ft p{font-size:.93rem;line-height:1.65;color:var(--muted)}
+.credits{display:flex;flex-wrap:wrap;gap:12px 40px;margin-top:40px;font-size:.88rem;color:var(--muted)}
+.credits b{color:var(--fg);font-weight:600;margin-right:8px}
 
-.story{max-width:1240px;margin:0 auto;padding:120px var(--gutter) 0;}
-.story .kicker{margin-bottom:40px;}
-.srow{display:grid;grid-template-columns:240px minmax(0,1fr);gap:20px 56px;padding:34px 0;border-top:1px solid var(--line);}
-.srow:last-child{border-bottom:1px solid var(--line);}
-.srow h2{font-family:'Archivo',sans-serif;font-weight:700;font-size:0.76rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--red);padding-top:8px;}
-.srow p{font-size:clamp(1.14rem,1.9vw,1.48rem);line-height:1.55;letter-spacing:-0.012em;max-width:38ch;}
-.srow.learn p{font-weight:600;}
-@media(max-width:800px){.story{padding-top:80px;}.srow{grid-template-columns:1fr;gap:12px;padding:28px 0;}.srow h2{padding-top:0;}}
+/* cta + next */
+.cta{background:var(--fg);color:var(--bg);margin-top:clamp(90px,12vw,170px)}
+.cta .w{padding-block:clamp(80px,10vw,140px);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:30px 60px;align-items:end}
+.cta h2{font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(2.4rem,6vw,5.4rem);line-height:.92;letter-spacing:-.03em;text-transform:uppercase}
+.cta p{font-size:1.02rem;line-height:1.65;opacity:.75;margin-bottom:24px}
+.cta .price{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.6rem;margin-bottom:18px}
+.cta .price small{font-family:'Inter',sans-serif;font-weight:500;font-size:.85rem;opacity:.7;margin-right:6px}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border-radius:100px;font-family:'Archivo',sans-serif;font-weight:700;font-size:.76rem;letter-spacing:.09em;text-transform:uppercase;text-decoration:none;background:#D91C2B;color:#fff;border:1.5px solid #D91C2B;transition:transform .35s cubic-bezier(.19,1,.22,1),background .3s}
+.btn:hover{transform:translateY(-2px);background:#A8121E}
+.btn.ghost{background:transparent;color:inherit;border-color:currentColor;opacity:.8}
+.btn.ghost:hover{opacity:1;background:transparent}
+@media(max-width:860px){.cta .w{grid-template-columns:1fr}}
+.next{display:block;text-decoration:none;padding-block:clamp(70px,9vw,130px);border-bottom:1px solid var(--line)}
+.next small{font-family:'Archivo',sans-serif;font-weight:700;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.next strong{display:block;font-family:'Archivo',sans-serif;font-weight:900;font-size:clamp(2.6rem,9vw,8rem);line-height:.9;letter-spacing:-.04em;text-transform:uppercase;margin-top:14px;transition:color .4s}
+.next:hover strong{color:var(--accent)}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-block:28px calc(28px + env(safe-area-inset-bottom));font-size:.8rem;color:var(--muted)}
+.foot a{text-decoration:none}
 
-.gallery{max-width:1240px;margin:0 auto;padding:96px var(--gutter) 0;display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(16px,2.4vw,32px);}
-.gallery .frame{aspect-ratio:4/5;}
-@media(max-width:700px){.gallery{grid-template-columns:1fr;}}
-
-.offer{margin:120px var(--gutter) 0;background:var(--ink);color:var(--white);border-radius:28px;padding:clamp(36px,6vw,80px);max-width:1296px;}
-@media(min-width:1440px){.offer{margin-left:auto;margin-right:auto;}}
-.offer-top{display:grid;grid-template-columns:1.1fr 1fr;gap:24px 64px;align-items:end;margin-bottom:44px;}
-.offer .kicker{margin-bottom:20px;}
-.offer h2{font-weight:700;letter-spacing:-0.03em;line-height:1.1;font-size:clamp(1.8rem,3.6vw,2.7rem);max-width:16ch;}
-.offer-top p{font-size:1rem;line-height:1.7;color:rgba(250,249,247,0.66);}
-.pkgs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:40px;}
-.pkg{display:block;text-decoration:none;color:var(--white);border:1px solid var(--line-on-ink);border-radius:18px;padding:26px;
-  transition:border-color .4s var(--ease-premium),background .4s var(--ease-premium),transform .4s var(--ease-premium);}
-.pkg:hover{border-color:rgba(250,249,247,0.4);background:rgba(250,249,247,0.04);transform:translateY(-3px);}
-.pkg small{font-family:'Archivo',sans-serif;font-weight:700;font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(250,249,247,0.5);}
-.pkg h3{font-weight:600;font-size:1.12rem;letter-spacing:-0.015em;margin:10px 0 6px;}
-.pkg p{font-size:0.88rem;line-height:1.55;color:rgba(250,249,247,0.6);margin-bottom:22px;}
-.pkg .price{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-top:18px;border-top:1px solid var(--line-on-ink);}
-.pkg .price b{font-family:'Archivo',sans-serif;font-weight:800;font-size:1.6rem;letter-spacing:-0.02em;}
-.pkg .price b i{font-style:normal;font-family:'Inter',sans-serif;font-weight:500;font-size:0.8rem;color:rgba(250,249,247,0.55);margin-right:6px;letter-spacing:0;}
-.pkg .price span{font-size:0.8rem;color:rgba(250,249,247,0.6);white-space:nowrap;}
-.pkg:hover .price span{color:var(--white);}
-.offer .cta.primary{background:var(--red);border-color:var(--red);}
-.offer .cta.primary:hover{background:var(--white);color:var(--ink);border-color:var(--white);box-shadow:none;}
-.offer .cta.ghost{color:var(--white);border-color:rgba(250,249,247,0.3);}
-.offer .cta.ghost:hover{background:var(--white);color:var(--ink);}
-@media(max-width:900px){.offer{border-radius:20px;margin-left:16px;margin-right:16px;margin-top:88px;}.offer-top{grid-template-columns:1fr;}}
-
-.related{max-width:1440px;margin:0 auto;padding:120px var(--gutter) 120px;}
-.related .head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:36px;}
-.related h2{font-weight:700;letter-spacing:-0.025em;font-size:clamp(1.5rem,2.6vw,2rem);}
-.related .head a{font-family:'Archivo',sans-serif;font-weight:700;font-size:0.76rem;letter-spacing:0.07em;text-transform:uppercase;text-decoration:none;white-space:nowrap;}
-.related .head a:hover{color:var(--red);}
-.next{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:80px;padding:34px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-decoration:none;}
-.next small{display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
-.next strong{font-weight:700;letter-spacing:-0.03em;font-size:clamp(1.8rem,4.4vw,3.4rem);line-height:1.05;transition:color .4s;}
-.next .arr{font-size:clamp(1.6rem,3vw,2.4rem);transition:transform .5s var(--ease-premium),color .4s;}
-.next:hover strong,.next:hover .arr{color:var(--red);}
-.next:hover .arr{transform:translateX(8px);}
-@media(max-width:900px){.related{padding-top:88px;padding-bottom:88px;}}
+.js .rv{opacity:0;transform:translateY(30px);transition:opacity 1s cubic-bezier(.19,1,.22,1),transform 1s cubic-bezier(.19,1,.22,1)}
+.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.js .rv,.hero h1 span{opacity:1;transform:none;animation:none;transition:none}.hero-shot{transform:none!important}}
 </style>
 </head>
 <body>
-<div id="grain"></div><div id="wipe"></div><div id="topProgress"></div>
-<header class="top">
-  <a href="../index.html" class="logo">BEYOND<em>BRANDING</em></a>
-  <nav>
-    <a href="../packages-global/index.html" class="pill hide-sm">Pricing</a>
-    <a href="../portfolio.html" class="pill">← All work</a>
-    <a href="https://wa.me/19108301588?text=Hi%20Ayush%2C%20I%20found%20you%20through%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener" class="pill red">WhatsApp</a>
-  </nav>
-</header>
+<header class="bar"><a class="logo" href="../index.html">BEYOND BRANDING</a>
+  <nav><a class="hide" href="../websites.html">Websites</a><a href="../portfolio.html">All work</a></nav></header>
 <main>
-<section class="c-hero">
-  <div class="intro">
-    <div class="crumb"><a href="../portfolio.html">Work</a> &nbsp;/&nbsp; Aiolec</div>
-    <div class="kicker">Technology</div>
-    <h1>Aiolec</h1>
-    <p class="lede"><strong>A brochure that sells before the meeting starts.</strong>Brochure design for Aiolec in London, built to explain the offer clearly and look as premium as the product.</p>
-    <dl class="facts">
-      <div><dt>Services</dt><dd>Brochure Design · Sales Collateral</dd></div>
-      <div><dt>Industry</dt><dd>Technology</dd></div>
-      <div><dt>Location</dt><dd>London, UK</dd></div>
-    </dl>
-    <div class="actions">
-      <a href="https://wa.me/19108301588?text=Hi%20Ayush%2C%20I%20saw%20the%20Aiolec%20project%20on%20your%20website%20and%20would%20like%20something%20similar%20for%20my%20brand." target="_blank" rel="noopener" class="cta">⊟ Get something similar</a>
-      <a href="#pricing" class="cta ghost">What it costs</a>
+<section class="hero w">
+  <div class="kick"><span>Website case study</span><span>2026</span><span>Technology</span></div>
+  <h1 aria-label="Aiolec"><span style="animation-delay:0ms">A</span><span style="animation-delay:40ms">i</span><span style="animation-delay:80ms">o</span><span style="animation-delay:120ms">l</span><span style="animation-delay:160ms">e</span><span style="animation-delay:200ms">c</span></h1>
+  <p class="tag">A display catalogue with the restraint of a product launch.</p>
+  <dl class="meta">
+    <div><dt>Client</dt><dd>Aiolec</dd></div>
+    <div><dt>Our role</dt><dd>UX, copy, 3D, design &amp; build</dd></div>
+    <div><dt>Industry</dt><dd>Technology · London, UK</dd></div>
+    <div><dt>Status</dt><dd>Launch-ready build</dd></div>
+  </dl>
+  <div class="frame hero-shot"><div class="chrome"><i></i><i></i><i></i><u>Aiolec · Launch-ready build</u></div><img src="../assets/sc/aiolec/hero.webp" alt="Aiolec website homepage" fetchpriority="high"></div>
+</section>
+
+<section class="intro w">
+  <div class="rv"><div class="lbl">The idea</div><h2>Nobody falls for a spec sheet. <em>So we let buyers turn the product in their hand.</em></h2></div>
+  <div class="rv"><p>Aiolec makes commercial displays for places people see: shop windows, restaurants, receptions and high-footfall spaces. Three ranges cover indoor, high-brightness and double-sided use, from 32 to 75 inches.</p><p>The site is built like a launch: one idea per screen, real-world settings first, and an interactive 3D model of each display that buyers can rotate and resize. When they are ready, the Aiolec Advisor asks a few questions and points to the right model.</p></div>
+</section>
+
+<section class="sect w" aria-label="Key screens">
+    <div class="row rv"><div class="cap"><div class="n">01</div><h3>The display, in 3D</h3><p>A Three.js model of each range that buyers can drag to explore and switch between sizes.</p></div>
+      <div class="frame"><div class="chrome"><i></i><i></i><i></i><u>Aiolec · Launch-ready build</u></div><img src="../assets/sc/aiolec/s1.webp" alt="Aiolec website: The display, in 3D" loading="lazy"></div></div>
+    <div class="row rv"><div class="cap"><div class="n">02</div><h3>Specification, without the clutter</h3><p>Full hardware specs grouped into display, physical and platform, with PDF downloads.</p></div>
+      <div class="frame"><div class="chrome"><i></i><i></i><i></i><u>Aiolec · Launch-ready build</u></div><img src="../assets/sc/aiolec/s2.webp" alt="Aiolec website: Specification, without the clutter" loading="lazy"></div></div>
+    <div class="row rv"><div class="cap"><div class="n">03</div><h3>The Aiolec Advisor</h3><p>A guided consultation: &#x27;Tell us about your space.&#x27; A few questions, one considered recommendation.</p></div>
+      <div class="frame"><div class="chrome"><i></i><i></i><i></i><u>Aiolec · Launch-ready build</u></div><img src="../assets/sc/aiolec/s3.webp" alt="Aiolec website: The Aiolec Advisor" loading="lazy"></div></div>
+    <div class="row rv"><div class="cap"><div class="n">04</div><h3>Where will the display live?</h3><p>The advisor&#x27;s first step sorts indoor, outdoor and transitional spaces before recommending a range.</p></div>
+      <div class="frame"><div class="chrome"><i></i><i></i><i></i><u>Aiolec · Launch-ready build</u></div><img src="../assets/sc/aiolec/s4.webp" alt="Aiolec website: Where will the display live?" loading="lazy"></div></div>
+    <div class="row rv"><div class="cap"><div class="n">05</div><h3>Built for the places people see</h3><p>Retail, corporate, hospitality, QSR, DOOH and healthcare, each shown in a real setting.</p></div>
+      <div class="frame"><div class="chrome"><i></i><i></i><i></i><u>Aiolec · Launch-ready build</u></div><img src="../assets/sc/aiolec/s5.webp" alt="Aiolec website: Built for the places people see" loading="lazy"></div></div>
+    <div class="row rv"><div class="cap"><div class="n">06</div><h3>Double-sided, made to work</h3><p>Each range gets its own page, with settings, sizes and a side-by-side comparison.</p></div>
+      <div class="frame"><div class="chrome"><i></i><i></i><i></i><u>Aiolec · Launch-ready build</u></div><img src="../assets/sc/aiolec/s6.webp" alt="Aiolec website: Double-sided, made to work" loading="lazy"></div></div>
+</section>
+
+<section class="mob">
+  <div class="w"><h2 class="rv">Made for the phone in their hand.</h2><p class="rv">Store managers browse on the shop floor. The site, the advisor and the spec tables are rebuilt for the phone.</p>
+  <div class="phones"><div class="phone rv"><img src="../assets/sc/aiolec/mobile-1.webp" alt="Aiolec on mobile" loading="lazy"></div><div class="phone rv"><img src="../assets/sc/aiolec/mobile-2.webp" alt="Aiolec on mobile" loading="lazy"></div><div class="phone rv"><img src="../assets/sc/aiolec/mobile-3.webp" alt="Aiolec on mobile" loading="lazy"></div></div></div>
+</section>
+
+<section class="ds w">
+  <div class="ds-h rv"><h2>Design system</h2><p>A gallery palette so the hardware is the hero: near-black product, white space, warm lifestyle tones and one blue for the advisor.</p></div>
+  <div class="sw rv"><div style="background:#111214;color:#f4f1ea"><b>Ink</b><code>#111214</code><small>Product black</small></div><div style="background:#F5F6F7;color:#111"><b>Gallery</b><code>#F5F6F7</code><small>Product backdrops</small></div><div style="background:#6E6E73;color:#f4f1ea"><b>Grey</b><code>#6E6E73</code><small>Secondary type</small></div><div style="background:#EAD9C5;color:#111"><b>Warm</b><code>#EAD9C5</code><small>Lifestyle accents</small></div><div style="background:#5075FF;color:#f4f1ea"><b>Signal</b><code>#5075FF</code><small>The advisor and focus</small></div></div>
+  <div class="ty rv"><div><div class="s" style="font-family:'General Sans','Inter Tight',sans-serif">Built to be seen.</div><b>General Sans</b><small>Headlines: quiet and product-led</small></div><div><div class="s" style="font-family:'Inter',sans-serif">3,500 nits · 24/7 · Android 14</div><b>Inter</b><small>Specs and body copy</small></div></div>
+</section>
+
+<section class="w">
+  <div class="ds-h rv"><h2>What's built in</h2><p>Every feature exists to move a visitor one step closer to getting in touch.</p></div>
+  <div class="ft"><div class="rv"><div class="n">01</div><h3>Interactive 3D viewer</h3><p>Rotate each display and switch sizes, rendered in the browser.</p></div><div class="rv"><div class="n">02</div><h3>Aiolec Advisor</h3><p>A short consultation flow that recommends the right model.</p></div><div class="rv"><div class="n">03</div><h3>Spec comparison</h3><p>Every size side by side, with downloadable PDF specifications.</p></div><div class="rv"><div class="n">04</div><h3>Three product pages</h3><p>Commercial, high-brightness and double-sided ranges.</p></div><div class="rv"><div class="n">05</div><h3>Sector stories</h3><p>Retail, QSR, hospitality and corporate settings in one gallery.</p></div><div class="rv"><div class="n">06</div><h3>Matching brochure</h3><p>The same system carried into a print and digital brochure.</p></div></div>
+  <div class="credits rv"><span><b>Design &amp; build</b>Beyond Branding</span><span><b>Stack</b>HTML · CSS · JavaScript · Three.js · Lenis</span><span><b>Devices</b>Desktop, tablet, mobile</span></div>
+</section>
+
+<section class="cta">
+  <div class="w">
+    <h2 class="rv">Want a website that works this hard?</h2>
+    <div class="rv">
+      <div class="price"><small>Websites from</small>$800</div>
+      <p>Designed and built in-house, from first wireframe to launch. Send us a line about your business and we'll come back with a direction and a price range.</p>
+      <div class="btns"><a class="btn" href="https://wa.me/19108301588?text=Hi%20Ayush%2C%20I%20saw%20the%20Aiolec%20website%20case%20study%20and%20would%20like%20a%20website%20like%20this." target="_blank" rel="noopener">⊟ Start a website</a><a class="btn ghost" href="../packages-global/index.html#web">See pricing</a></div>
     </div>
   </div>
-  <div class="media"><div class="frame"><img src="../assets/aiolec-brochure-laptop.webp" alt="Aiolec London brochure design" loading="eager" fetchpriority="high" decoding="async"></div></div>
 </section>
 
-<section class="story" aria-label="Case study">
-  <div class="kicker">The work</div>
-  <div class="srow rv"><h2>The Challenge</h2><p>Technical products often get brochures written only for engineers. This one had to work just as well for the people signing off the budget.</p></div><div class="srow rv"><h2>The Approach</h2><p>A clear page-by-page structure, generous space and confident product imagery, so each spread answered one question and moved the reader to the next.</p></div><div class="srow rv"><h2>Delivered</h2><p>Brochure design in print and digital formats.</p></div>
-</section>
-
-<section class="offer rv" id="pricing">
-  <div class="offer-top">
-    <div><div class="kicker">Work like this</div><h2>Want this for your brand?</h2></div>
-    <p>These are the services behind the Aiolec project. Every quote is scoped to your brief—start with a WhatsApp message and get a clear range before anything is agreed.</p>
-  </div>
-  <div class="pkgs"><a class="pkg" href="../packages-global/index.html#collateral">
-  <small>Service</small><h3>Brochure &amp; Sales Collateral</h3><p>Catalogues, brochures and sales decks</p>
-  <div class="price"><b><i>from</i>$400</b><span>See tiers →</span></div>
-</a><a class="pkg" href="../packages-global/index.html#web">
-  <small>Service</small><h3>Digital &amp; Web Design</h3><p>Landing pages, full websites, e-commerce</p>
-  <div class="price"><b><i>from</i>$800</b><span>See tiers →</span></div>
-</a></div>
-  <div class="actions">
-    <a href="https://wa.me/19108301588?text=Hi%20Ayush%2C%20I%20saw%20the%20Aiolec%20project%20on%20your%20website%20and%20would%20like%20something%20similar%20for%20my%20brand." target="_blank" rel="noopener" class="cta primary">⊟ Discuss your project</a>
-    <a href="../packages-global/index.html" class="cta ghost">All packages</a>
-  </div>
-</section>
-
-<section class="related">
-  <div class="head"><h2>Related work</h2><a href="../portfolio.html">View all work →</a></div>
-  <div class="cards"><a class="card rv" href="manek.html" data-f="identity packaging collateral">
-  <div class="frame"><img src="../assets/manek-brochure-bag.webp" alt="Manek luxury shirting brand collateral" loading="lazy" decoding="async"></div>
-  <div class="c-tag">Luxury Retail</div>
-  <h3>Manek</h3>
-  <p>One continuous brand experience from shelf to store to sale.</p>
-  <div class="c-svc">Brand Identity · Packaging · Sales Collateral</div>
-</a><a class="card rv" href="dubai-media-office.html" data-f="events campaigns">
-  <div class="frame"><img src="../assets/dubai-media-office-stage.webp" alt="Dubai Government Media Office annual forum stage branding" loading="lazy" decoding="async"></div>
-  <div class="c-tag">Government · Dubai, UAE</div>
-  <h3>Dubai Media Office</h3>
-  <p>Bilingual campaign, stage and social systems that held together across dozens of touchpoints.</p>
-  <div class="c-svc">Social Content · Stage Branding · Design Collaterals</div>
-</a><a class="card rv" href="marriott-indore.html" data-f="packaging campaigns">
-  <div class="frame"><img src="../assets/marriott-indore-hamper.webp" alt="Marriott Indore festive hamper packaging" loading="lazy" decoding="async"></div>
-  <div class="c-tag">Hospitality · Indore, India</div>
-  <h3>Marriott Indore</h3>
-  <p>Takeaway and festive packaging that carried the in-hotel Marriott experience home.</p>
-  <div class="c-svc">Packaging · Campaign Design · Guest Collateral</div>
-</a></div>
-  <a class="next" href="overcmr.html"><div><small>Next project</small><strong>Overcmr</strong></div><span class="arr">→</span></a>
-</section>
+<div class="w">
+  <a class="next" href="dubai-media-office.html"><small>Next project</small><strong>Dubai Media Office →</strong></a>
+  <div class="foot"><span>© Beyond Branding · London · Dubai · Mumbai</span><span><a href="mailto:ayush@beyondbranding.media">ayush@beyondbranding.media</a></span></div>
+</div>
 </main>
-<section class="close-cta">
-  <div class="inner">
-    <div class="kicker">Start</div>
-    <h2>Have a brief like this one?</h2>
-    <p>Tell us what you're working on. You'll hear back from Ayush directly—not an account manager—with an honest view on direction, timeline and budget.</p>
-    <div class="actions">
-      <a href="https://wa.me/19108301588?text=Hi%20Ayush%2C%20I%20saw%20the%20Aiolec%20project%20on%20your%20website%20and%20would%20like%20something%20similar%20for%20my%20brand." target="_blank" rel="noopener" class="cta light">⊟ Message on WhatsApp</a>
-      <a href="mailto:ayush@beyondbranding.media" class="cta outline-light">Email Ayush</a>
-    </div>
-    <div class="site-footer">
-      <a href="https://instagram.com/beyondbranding.media" target="_blank" rel="noopener">Instagram</a>
-      <a href="https://linkedin.com/in/ayush-branding" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:ayush@beyondbranding.media">Email</a>
-      <span class="fs-copy">© Beyond Branding · London · Dubai · Mumbai</span>
-    </div>
-  </div>
-</section>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 (function(){
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches, lenis = null;
-  if(window.Lenis && !reduce){
-    lenis = new Lenis({duration:1,easing:function(t){return 1-Math.pow(1-t,4)},smoothWheel:true,touchMultiplier:1.1});
-    (function raf(t){lenis.raf(t);requestAnimationFrame(raf);})(0);
-    window.__lenis = lenis;
-  }
-  // image fade-in once decoded
-  document.querySelectorAll('.frame').forEach(function(f){
-    var img=f.querySelector('img'); if(!img) return;
-    var done=function(){f.classList.add('loaded')};
-    if(img.complete && img.naturalWidth) done(); else {img.addEventListener('load',done,{once:true});img.addEventListener('error',done,{once:true});}
-  });
-  // scroll reveal
-  var io = new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
-  window.__reveal = io;
-  // page-wipe on internal navigation
-  var wipe=document.getElementById('wipe');
-  document.addEventListener('click',function(e){
-    var a=e.target.closest('a'); if(!a||a.target==='_blank'||e.metaKey||e.ctrlKey||e.shiftKey) return;
-    var href=a.getAttribute('href')||''; if(!href||href.charAt(0)==='#'||/^(https?:|mailto:|tel:)/.test(href)) return;
-    e.preventDefault(); wipe.classList.add('cover'); setTimeout(function(){location.href=a.href},520);
-  });
-  window.addEventListener('pageshow',function(e){if(e.persisted) wipe.classList.remove('cover');});
-  // progress bar
-  var bar=document.getElementById('topProgress');
-  function prog(){var h=document.documentElement,s=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;bar.style.width=(isFinite(s)?s:0)+'%';}
-  if(lenis) lenis.on('scroll',prog); else addEventListener('scroll',prog,{passive:true}); prog();
+  var hs=document.querySelector('.hero-shot');
+  if(hs && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    addEventListener('scroll',function(){var r=hs.getBoundingClientRect(),v=innerHeight;var t=Math.max(-1,Math.min(1,(r.top-v*.2)/v));hs.style.transform='scale('+(1-Math.max(0,t)*.06)+')'},{passive:true});
+    dispatchEvent(new Event('scroll'));
+  }
 })();
 </script>
 </body>
